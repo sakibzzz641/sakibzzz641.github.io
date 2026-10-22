@@ -31,18 +31,33 @@ const DATA = {
   },
 
   // ---------- Skills ----------
-  skills: [
-    { icon: "Py", title: "Programming", items: ["Python", "SQL"] },
-    { icon: "Pd", title: "Python Libraries", items: ["Pandas", "NumPy", "Scikit-learn", "XGBoost"] },
-    { icon: "ML", title: "Machine Learning", subgroups: [
-      { title: "Supervised Learning", items: ["Regression", "Classification"] },
-      { title: "Unsupervised Learning", items: ["Clustering", "PCA"] },
-      { title: "Model Building", items: ["Feature Engineering", "Cross-Validation", "Hyperparameter Tuning", "Model Evaluation"] }
-    ] },
-    { icon: "DA", title: "Data Analysis", items: ["Data Cleaning", "EDA", "Statistical Analysis"] },
-    { icon: "Vz", title: "Data Visualization", items: ["Matplotlib", "Seaborn"] },
-    { icon: "Tl", title: "Tools", items: ["Jupyter Notebook", "Git", "GitHub", "AI-assisted development tools", "MS Excel", "MS Word", "MS PowerPoint", "MS Access"] }
-  ],
+  // ---------- Skills ----------
+
+skills: [
+
+{ icon: "Py", title: "Programming & Libraries", subgroups: [
+{ title: "Languages", items: ["Python", "SQL"] },
+{ title: "Python Libraries", items: ["Pandas", "NumPy", "Scikit-learn", "XGBoost", "Matplotlib", "Seaborn"] }
+] },
+
+{ icon: "ML", title: "Machine Learning", subgroups: [
+{ title: "Supervised Learning", items: ["Linear Regression", "Logistic Regression", "KNN", "Naive Bayes", "SVM", "Decision Tree"] },
+{ title: "Ensemble & Neural Network", items: ["Random Forest", "Gradient Boosting", "AdaBoost", "XGBoost", "Neural Network (MLP)"] },
+{ title: "Unsupervised Learning", items: ["K-Means", "Hierarchical", "DBSCAN", "PCA"] }
+] },
+
+{ icon: "WF", title: "ML Workflow", items: ["Scaling & Encoding", "Feature Engineering", "Pipelines", "Cross-Validation", "GridSearchCV", "RandomizedSearchCV", "SMOTE"] },
+
+{ icon: "Ev", title: "Model Evaluation", items: ["ROC-AUC", "Precision", "Recall", "F1-Score", "Confusion Matrix", "RMSE", "MAE", "R\u00B2", "Silhouette Score", "Elbow Method"] },
+
+{ icon: "DA", title: "Data Analysis & Excel", subgroups: [
+{ title: "Data Analysis", items: ["Data Cleaning", "EDA", "Data Visualization"] },
+{ title: "Excel", items: ["PivotTable", "Slicers", "Power Query", "Power Pivot/DAX", "XLOOKUP"] }
+] },
+
+{ icon: "Tl", title: "Tools", items: ["Jupyter Notebook", "Git", "GitHub", "AI-assisted development tools", "MS Word", "MS PowerPoint", "MS Access"] }
+
+],
 
   // ---------- Featured Projects ----------
   // color: "green" | "orange" | "blue" | "purple" (card er border/outline er rong)
