@@ -149,7 +149,7 @@ skills: [
       "I am looking for an entry-level Data Scientist or Data Analyst role where I can keep learning and turn data into decisions."
     ],
     education: [
-      { title: "B.Sc. (Hons) in Mathematics", note: "Govt. Shahid Asad College, Shibpur, Narsingdi. 4th year, expected 2027." },
+      { title: "B.Sc. (Hons) in Mathematics", note: "Govt. Shahid Asad College, Shibpur, Narsingdi, National University. 4th year, expected 2027." },
       { title: "HSC (Science), GPA 4.42/5.00", note: "Narsingdi Public College, 2021." }
     ]
   },
