@@ -3,6 +3,7 @@
    - Link/image khali ("") rakhle oi button ba image nijei lukiye jabe.
    - Notun item add korte { ... }, line ta copy kore comma diye boshao.
    - Image/file gulo assets/ folder e rakho.
+   - category: filter button er jonno (projects ar cases dui jaygatei). Notun category likhlei button nijei toiri hobe.
    ========================================================== */
 const DATA = {
 
@@ -69,6 +70,7 @@ skills: [
       color: "green",
       description: "Segmented 8,950 credit card customers with K-Means, Hierarchical and DBSCAN clustering after PCA (95% variance).",
       tags: ["Python", "PCA", "Clustering"],
+      category: ["Data Science", "Clustering"],
       repo: "https://github.com/sakibzzz641/Customer-Segmentation-Kmeans-dbscan-clustering",
       demo: "",
       image: "",
@@ -79,6 +81,7 @@ skills: [
       color: "green",
       description: "Compared 6 models on 7,043 customers. Best result: 0.844 ROC-AUC with 77% recall on likely churners.",
       tags: ["XGBoost", "SMOTE", "Classification"],
+      category: ["Data Science", "Classification"],
       repo: "https://github.com/sakibzzz641/Telco-Customer-Churn-Prediction",   // TODO: churn repo link
       demo: "",
       image: "",
@@ -89,11 +92,24 @@ skills: [
       color: "green",
       description: "Regression pipeline on 1,337 records. R\u00B2 of 0.85, with SHAP showing smoking status and age drive cost.",
       tags: ["Regression", "SHAP", "Cross-Validation"],
+      category: ["Data Science", "Regression"],
       repo: "https://github.com/sakibzzz641/Insurance-charges-regression",   // TODO: insurance repo link
       demo: "",
       image: "",
       thumb: "up"
+    },
+    {
+      title: "Global Sales Dashboard (Excel)",
+      color: "orange",
+      description: "Interactive 4-page sales dashboard (Executive, Product, Regional, Customer) built with PivotTables and VBA automation.",
+      tags: ["Excel", "PivotTable", "VBA", "Dashboard"],
+      category: ["Excel", "Data Analysis"],
+      repo: "",   // TODO: Excel project repo link dile "View Project" button nijei cholye asbe
+      demo: "",
+      image: "",
+      thumb: "mix"
     }
+    // Notun project: ekta { ... } block copy kore comma diye boshao (SQL / Power BI o ekbhabe)
   ],
 
   // ---------- Case Studies ----------
@@ -102,6 +118,8 @@ skills: [
       title: "Credit Card Customer Segmentation",
       color: "green",
       tags: ["Clustering", "PCA", "K-Means"],
+      category: ["Data Science", "Clustering"],
+      repo: "https://github.com/sakibzzz641/Customer-Segmentation-Kmeans-dbscan-clustering",
       problem: "Group customers by spending and repayment behavior to guide marketing and credit risk.",
       approach: "Log-transforms, correlation filtering, PCA (9 components), then K-Means, Hierarchical and DBSCAN compared by silhouette score.",
       result: "K-Means (k=2) found 60% purchase-active customers and 40% cash-advance, high-balance carriers."
@@ -110,6 +128,8 @@ skills: [
       title: "Telecom Churn Retention",
       color: "green",
       tags: ["Classification", "XGBoost", "SMOTE"],
+      category: ["Data Science", "Classification"],
+      repo: "https://github.com/sakibzzz641/Telco-Customer-Churn-Prediction",
       problem: "Predict which customers are about to leave so the company can act early.",
       approach: "EDA, SMOTE for class imbalance, and 6 models compared with ROC-AUC and recall.",
       result: "88.6% of churners are on month-to-month contracts. Suggested auto-pay incentives and 1-year offers."
@@ -118,6 +138,8 @@ skills: [
       title: "Insurance Cost Drivers",
       color: "green",
       tags: ["Regression", "XGBoost", "SHAP"],
+      category: ["Data Science", "Regression"],
+      repo: "https://github.com/sakibzzz641/Insurance-charges-regression",
       problem: "Estimate medical charges and explain what pushes them up.",
       approach: "Smoker \u00D7 BMI features cut baseline RMSE by 25%. 8 models tested with 5-fold CV and tuning.",
       result: "XGBoost reached R\u00B2 0.85 (RMSE about $4.6K). Smokers pay about 3.8x more on average."
@@ -149,7 +171,7 @@ skills: [
       "I am looking for an entry-level Data Scientist or Data Analyst role where I can keep learning and turn data into decisions."
     ],
     education: [
-      { title: "B.Sc. (Hons) in Mathematics", note: "Govt. Shahid Asad College, Shibpur, Narsingdi, National University. 4th year, expected 2027." },
+      { title: "B.Sc. (Hons) in Mathematics", note: "Govt. Shahid Asad College, Shibpur, Narsingdi. 4th year, expected 2027." },
       { title: "HSC (Science), GPA 4.42/5.00", note: "Narsingdi Public College, 2021." }
     ]
   },
