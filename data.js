@@ -94,6 +94,17 @@ skills: [
       image: "",
       thumb: "up"
     }
+     {
+      title: "Global Sales Dashboard (Excel)",
+      color: "orange",
+      description: "Interactive 4-page sales dashboard (Executive, Product, Regional, Customer) built with PivotTables and VBA automation.",
+      tags: ["Excel", "Business Intelligence", "PivotTable", "Data Analytics", "Power Query", "Dashboard"],
+      category: ["Excel", "Data Analysis"],
+      repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",   // TODO: Excel project repo link dile "View Project" button nijei cholye asbe
+      demo: "",
+      image: "",
+      thumb: "mix"
+    }
   ],
 
   // ---------- Case Studies ----------
