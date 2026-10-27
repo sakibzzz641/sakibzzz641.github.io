@@ -93,7 +93,7 @@ skills: [
       demo: "",
       image: "",
       thumb: "up"
-    }
+    },
      {
       title: "Global Sales Dashboard (Excel)",
       color: "orange",
