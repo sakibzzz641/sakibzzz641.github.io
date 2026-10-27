@@ -102,11 +102,6 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
  nav>.btn{display:none}
 }
 
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin:-12px 0 24px}
-.fbtn{font:inherit;font-size:.82rem;font-weight:500;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--mute);cursor:pointer}
-.fbtn:hover{border-color:var(--green2);color:var(--ink)}
-.fbtn.on{background:var(--green);border-color:var(--green);color:#fff}
-.case a.more{display:inline-block;margin-top:10px;font-size:.85rem;font-weight:600;color:var(--ac,var(--green))}
 [hidden]{display:none!important}
 .proj .links{margin-top:auto;display:flex;gap:16px}
 .proj .links a.more{margin-top:0}
@@ -172,8 +167,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
 <section id="projects" class="alt">
  <div class="wrap">
   <h2>Featured Projects</h2>
-  <p class="sub">End-to-end data science and analytics projects, from cleaning and EDA to dashboards and model evaluation. Filter by topic.</p>
-  <div class="filters" id="projFilters" aria-label="Filter projects"></div>
+  <p class="sub">End-to-end data science projects, from cleaning and EDA to model evaluation.</p>
   <div class="projects" id="projectList"></div>
  </div>
 </section>
@@ -182,7 +176,6 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
  <div class="wrap">
   <h2>Case Studies</h2>
   <p class="sub">The problem, what I did, and what the data showed.</p>
-  <div class="filters" id="caseFilters" aria-label="Filter case studies"></div>
   <div class="cases" id="caseList"></div>
  </div>
 </section>
@@ -216,7 +209,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
 </main>
 <footer id="footer"></footer>
 
-<script src="data-v2.js"></script>
+<script src="data.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -249,28 +242,14 @@ const FB={
  dots:'<div class="thumb dots" aria-hidden="true"><span style="left:18%;top:30%;background:var(--ac,#1f7a5c)"></span><span style="left:26%;top:52%;background:var(--ac,#1f7a5c)"></span><span style="left:34%;top:38%;background:var(--ac,#1f7a5c)"></span><span style="left:62%;top:60%;background:#e08a4b"></span><span style="left:70%;top:35%;background:#e08a4b"></span><span style="left:78%;top:55%;background:#e08a4b"></span></div>',
  mix:'<div class="thumb" aria-hidden="true"><span style="height:85%"></span><span style="height:35%;background:#e08a4b"></span><span style="height:60%"></span><span style="height:25%;background:#e08a4b"></span><span style="height:70%"></span></div>',
  up:'<div class="thumb" aria-hidden="true"><span style="height:30%"></span><span style="height:45%"></span><span style="height:55%"></span><span style="height:75%"></span><span style="height:92%"></span></div>'};
-const pick=(a,f)=>(a||[]).filter(x=>f==='All'||(x.category||[]).includes(f));
-function filterBar(box,items,draw){
- const el=$(box),list=[...new Set((items||[]).flatMap(x=>x.category||[]))];
- if(list.length<2){el.hidden=true;draw('All');return}
- const show=f=>{el.innerHTML=['All',...list].map(c=>'<button type="button" class="fbtn'+(c===f?' on':'')+'" aria-pressed="'+(c===f)+'" data-f="'+esc(c)+'">'+esc(c)+'</button>').join('');draw(f)};
- el.onclick=e=>{const b=e.target.closest('.fbtn');if(b)show(b.dataset.f)};
- show('All');
-}
-function drawProjects(f){
-$('#projectList').innerHTML=pick(D.projects,f).map(p=>'<article class="proj'+(p.color?' c-'+esc(p.color):'')+'">'+
+$('#projectList').innerHTML=D.projects.map(p=>'<article class="proj'+(p.color?' c-'+esc(p.color):'')+'">'+
  (p.image?'<div class="thumb img"><img src="'+esc(p.image)+'" alt="'+esc(p.title)+'" loading="lazy"></div>':(FB[p.thumb]||FB.mix))+
  '<div class="body"><h3>'+esc(p.title)+'</h3><p>'+esc(p.description)+'</p>'+tags(p.tags)+
  '<div class="links">'+lnk(p.repo,'View Project &#8599;','more',true)+lnk(p.demo,'Live Demo &#8599;','more',true)+'</div></div></article>').join('');
-}
-filterBar('#projFilters',D.projects,drawProjects);
 
 // case studies
-function drawCases(f){
-$('#caseList').innerHTML=pick(D.cases,f).map(c=>'<div class="case'+(c.color?' c-'+esc(c.color):'')+'"><div><h3>'+esc(c.title)+'</h3>'+tags(c.tags)+lnk(c.repo,'View Project &#8599;','more',true)+'</div>'+
+$('#caseList').innerHTML=D.cases.map(c=>'<div class="case'+(c.color?' c-'+esc(c.color):'')+'"><div><h3>'+esc(c.title)+'</h3>'+tags(c.tags)+'</div>'+
  '<div><h4>Problem</h4><p>'+esc(c.problem)+'</p></div><div><h4>Approach</h4><p>'+esc(c.approach)+'</p></div><div><h4>Result</h4><p>'+esc(c.result)+'</p></div></div>').join('');
-}
-filterBar('#caseFilters',D.cases,drawCases);
 
 // certifications
 $('#certList').innerHTML=D.certificates.map(c=>'<article class="cert"><h3>'+esc(c.title)+'</h3><p class="by">'+esc(c.issuer)+'</p><dl>'+
