@@ -120,6 +120,32 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
 .proj a.more{color:var(--ac,var(--green))}
 .case{border:2px solid var(--ac,var(--line));border-left:6px solid var(--ac,var(--line))}
 .case h4{color:var(--ac,var(--green))}
+
+.plist{display:grid;gap:28px;max-width:860px;margin:0 auto}
+.pcard{background:var(--card);border:2px solid var(--ac,var(--line));border-radius:14px;overflow:hidden}
+.pcover{position:relative;aspect-ratio:16/9;background:var(--ac-bg,#eaf2ef);overflow:hidden}
+.pcover img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.pcover .thumb{height:100%;border-bottom:0}
+.enl{position:absolute;right:12px;bottom:12px;background:rgba(15,31,29,.85);color:#fff;border:0;border-radius:6px;padding:5px 11px;font:inherit;font-size:.74rem;cursor:pointer}
+.pbar{display:flex;align-items:center;gap:7px;padding:10px 16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#f8faf9}
+.pbar i{width:10px;height:10px;border-radius:50%;background:#ec6a5e}.pbar i:nth-child(2){background:#f4bf4f}.pbar i:nth-child(3){background:#61c554}
+.pfile{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.76rem;color:var(--mute);margin-left:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pbadge{margin-left:auto;font-size:.72rem;font-weight:500;color:var(--ac,var(--green));background:var(--ac-bg,#e4f1ec);border-radius:999px;padding:3px 11px;white-space:nowrap}
+.pbody{padding:22px 24px 24px}
+.pbody h3{font-family:var(--serif);font-size:1.45rem;line-height:1.25;margin-bottom:8px}
+.pbody h3 a{color:var(--ac,var(--green))}.pbody h3 a:hover{text-decoration:underline}
+.pdesc{color:var(--mute);font-size:.95rem}
+.pstats{display:flex;flex-wrap:wrap;gap:12px 34px;margin:18px 0}
+.pstats b{display:block;font-family:var(--serif);font-size:1.5rem;line-height:1.2}
+.pstats small{font-size:.66rem;letter-spacing:.07em;color:var(--mute)}
+.pnote{border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:8px;padding:11px 14px;font-size:.88rem;margin-bottom:16px}
+.pbody .tags{margin-bottom:18px}
+.pbtns{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.pbtns .btn svg{width:16px;height:16px;fill:currentColor;vertical-align:-3px;margin-right:7px}
+.plink{font-size:.88rem;font-weight:600;color:var(--ac,var(--green))}.plink:hover{text-decoration:underline}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:50;cursor:zoom-out}
+.lb.on{display:flex}.lb img{max-width:96vw;max-height:92vh}
+@media(max-width:560px){.pbody{padding:18px}.pbody h3{font-size:1.2rem}}
 </style>
 </head>
 <body>
@@ -132,7 +158,6 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
     <li data-sec="about"><a href="#about">About</a></li>
     <li data-sec="skills"><a href="#skills">Skills</a></li>
     <li data-sec="projects"><a href="#projects">Projects</a></li>
-    <li data-sec="cases"><a href="#cases">Case Studies</a></li>
     <li data-sec="certs"><a href="#certs">Certifications</a></li>
     <li><a href="#contact">Contact</a></li>
    </ul>
@@ -171,19 +196,10 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
 
 <section id="projects" class="alt">
  <div class="wrap">
-  <h2>Featured Projects</h2>
-  <p class="sub">End-to-end data science and analytics projects, from cleaning and EDA to dashboards and model evaluation. Filter by topic.</p>
+  <h2>Projects</h2>
+  <p class="sub">End-to-end data science and analytics projects. Open a project for the full write-up, or go straight to the code on GitHub.</p>
   <div class="filters" id="projFilters" aria-label="Filter projects"></div>
-  <div class="projects" id="projectList"></div>
- </div>
-</section>
-
-<section id="cases">
- <div class="wrap">
-  <h2>Case Studies</h2>
-  <p class="sub">The problem, what I did, and what the data showed.</p>
-  <div class="filters" id="caseFilters" aria-label="Filter case studies"></div>
-  <div class="cases" id="caseList"></div>
+  <div class="plist" id="projectList"></div>
  </div>
 </section>
 
@@ -216,7 +232,8 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
 </main>
 <footer id="footer"></footer>
 
-<script src="data-v3.js"></script>
+<div class="lb" id="lb"><img id="lbi" alt=""></div>
+<script src="data-v4.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -258,19 +275,19 @@ function filterBar(box,items,draw){
  show('All');
 }
 function drawProjects(f){
-$('#projectList').innerHTML=pick(D.projects,f).map(p=>'<article class="proj'+(p.color?' c-'+esc(p.color):'')+'">'+
- (p.image?'<div class="thumb img"><img src="'+esc(p.image)+'" alt="'+esc(p.title)+'" loading="lazy"></div>':(FB[p.thumb]||FB.mix))+
- '<div class="body"><h3>'+esc(p.title)+'</h3><p>'+esc(p.description)+'</p>'+tags(p.tags)+
- '<div class="links">'+lnk(p.repo,'View Project &#8599;','more',true)+lnk(p.demo,'Live Demo &#8599;','more',true)+'</div></div></article>').join('');
+$('#projectList').innerHTML=pick(D.projects,f).map(p=>{
+ const page=p.id?'project-v4.html?id='+encodeURIComponent(p.id):'';
+ const cover=p.cover?'<img src="'+esc(p.cover)+'" alt="'+esc(p.title)+'" loading="lazy"><button type="button" class="enl" data-src="'+esc(p.cover)+'">&#10530; enlarge</button>':(FB[p.thumb]||FB.mix);
+ const stats=(p.metrics||[]).map(m=>'<div><b>'+esc(m[0])+'</b><small>'+esc(m[1])+'</small></div>').join('');
+ return '<article class="pcard'+(p.color?' c-'+esc(p.color):'')+'"><div class="pcover">'+cover+'</div>'+
+ '<div class="pbar"><i></i><i></i><i></i><span class="pfile">'+esc(p.file||'')+'</span>'+(p.badge?'<span class="pbadge">'+esc(p.badge)+'</span>':'')+'</div>'+
+ '<div class="pbody"><h3>'+(page?'<a href="'+page+'">'+esc(p.title)+'</a>':esc(p.title))+'</h3><p class="pdesc">'+esc(p.description)+'</p>'+
+ (stats?'<div class="pstats">'+stats+'</div>':'')+(p.note?'<p class="pnote">'+esc(p.note)+'</p>':'')+tags(p.tags)+
+ '<div class="pbtns">'+lnk(p.repo,ICON.github+'View on GitHub &#8594;','btn fill',true)+lnk(page,'Read full case study &#8594;','plink')+(p.extra&&p.extra.url?lnk(p.extra.url,esc(p.extra.text||'More')+' &#8599;','plink',true):'')+'</div></div></article>'}).join('');
 }
 filterBar('#projFilters',D.projects,drawProjects);
-
-// case studies
-function drawCases(f){
-$('#caseList').innerHTML=pick(D.cases,f).map(c=>'<div class="case'+(c.color?' c-'+esc(c.color):'')+'"><div><h3>'+esc(c.title)+'</h3>'+tags(c.tags)+lnk(c.repo,'View Project &#8599;','more',true)+'</div>'+
- '<div><h4>Problem</h4><p>'+esc(c.problem)+'</p></div><div><h4>Approach</h4><p>'+esc(c.approach)+'</p></div><div><h4>Result</h4><p>'+esc(c.result)+'</p></div></div>').join('');
-}
-filterBar('#caseFilters',D.cases,drawCases);
+document.addEventListener('click',e=>{const b=e.target.closest('.enl');if(b){$('#lbi').src=b.dataset.src;$('#lb').classList.add('on')}else if(e.target.closest('#lb'))$('#lb').classList.remove('on')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#lb').classList.remove('on')});
 
 // certifications
 $('#certList').innerHTML=D.certificates.map(c=>'<article class="cert"><h3>'+esc(c.title)+'</h3><p class="by">'+esc(c.issuer)+'</p><dl>'+
@@ -287,7 +304,7 @@ $('#contactBtns').innerHTML=lnk(mail,'Send an email','btn fill')+lnk(S.github,'G
 $('#footer').innerHTML='&copy; '+new Date().getFullYear()+' '+esc(P.name);
 
 // hide sections that have no data
-[['projects',D.projects],['cases',D.cases],['certs',D.certificates],['skills',D.skills]].forEach(([id,a])=>{
+[['projects',D.projects],['certs',D.certificates],['skills',D.skills]].forEach(([id,a])=>{
  if(!a||!a.length){$('#'+id).remove();const li=document.querySelector('li[data-sec="'+id+'"]');if(li)li.remove()}});
 </script>
 </body>

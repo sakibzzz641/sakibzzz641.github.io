@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project | Sakib Al Hasan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f1f1d;--dark:#101c1a;--green:#1f7a5c;--green2:#2a9d76;--orange:#e08a4b;--bg:#f4f6f4;--card:#fff;--line:#dbe2de;--mute:#5d6b66;--serif:'Source Serif 4',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.7}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--green2);outline-offset:3px}
+header{background:#fff;border-bottom:1px solid var(--line)}
+nav{max-width:860px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--serif);font-weight:700}.back{font-size:.88rem;font-weight:600;color:var(--green)}
+main{max-width:860px;margin:0 auto;padding:36px 24px 72px}
+.c-green{--ac:#1f7a5c;--ac-bg:#e4f1ec}.c-orange{--ac:#d2762f;--ac-bg:#fbeee3}.c-blue{--ac:#3a74b8;--ac-bg:#e5eff9}.c-purple{--ac:#7d52b3;--ac-bg:#efe8f8}
+.badge{display:inline-block;font-size:.74rem;font-weight:500;color:var(--ac,var(--green));background:var(--ac-bg,#e4f1ec);border-radius:999px;padding:3px 12px;margin-bottom:10px}
+h1{font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.4rem);line-height:1.2;margin-bottom:10px}
+.lead{color:var(--mute);font-size:1.05rem}
+.cover{position:relative;margin:24px 0;border:2px solid var(--ac,var(--line));border-radius:14px;overflow:hidden;background:var(--ac-bg,#eaf2ef)}
+.cover img{width:100%;display:block;cursor:zoom-in}
+.stats{display:flex;flex-wrap:wrap;gap:12px 36px;margin:22px 0}
+.stats b{display:block;font-family:var(--serif);font-size:1.6rem;line-height:1.2}
+.stats small{font-size:.68rem;letter-spacing:.07em;color:var(--mute)}
+.note{border:1px solid var(--line);border-left:3px solid var(--orange);background:#fff;border-radius:8px;padding:12px 16px;margin:6px 0 18px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.tags em{font-style:normal;font-size:.74rem;border:1.5px solid var(--ac,var(--green));background:var(--ac-bg,#e4f1ec);color:var(--ink);border-radius:5px;padding:2px 9px}
+.btns{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.btn{display:inline-block;padding:10px 20px;border-radius:999px;font-size:.88rem;font-weight:600;background:var(--green);color:#fff}
+.btn:hover{background:var(--green2)}.btn svg{width:16px;height:16px;fill:currentColor;vertical-align:-3px;margin-right:7px}
+.plink{font-size:.9rem;font-weight:600;color:var(--ac,var(--green))}
+article{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 28px 28px;margin-top:34px}
+article h2{font-family:var(--serif);font-size:1.35rem;margin:26px 0 6px}
+article h2::before{content:"";display:block;width:30px;height:3px;background:var(--ac,var(--green));margin-bottom:10px}
+article p,article li{color:#33433e}article ul{padding-left:22px}
+figure{margin:18px 0}figure img{width:100%;border:1px solid var(--line);border-radius:10px;cursor:zoom-in;display:block}
+figcaption{text-align:center;font-size:.84rem;color:var(--mute);margin-top:6px}
+.video{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;margin-top:14px}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.bottom{margin-top:30px}
+footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:22px;font-size:.82rem}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:50;cursor:zoom-out}
+.lb.on{display:flex}.lb img{max-width:96vw;max-height:92vh}
+</style></head><body>
+<header><nav><a class="logo" href="index.html" id="who">Portfolio</a><a class="back" href="index.html#projects">&larr; All projects</a></nav></header>
+<main id="app"></main>
+<footer id="foot"></footer>
+<div class="lb" id="lb"><img id="lbi" alt=""></div>
+<script src="data-v4.js"></script>
+<script>
+const $=s=>document.querySelector(s),D=DATA,P=D.profile||{},S=D.social||{};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const GH='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.085 1.838 1.237 1.838 1.237 1.07 1.834 2.809 1.304 3.495.997.108-.775.418-1.305.762-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.5 11.5 0 0 1 6.002 0c2.292-1.552 3.299-1.23 3.299-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .321.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>';
+$('#who').textContent=P.shortName||P.name||'Portfolio';
+$('#foot').innerHTML='&copy; '+new Date().getFullYear()+' '+esc(P.name||'');
+const id=new URLSearchParams(location.search).get('id');
+const p=(D.projects||[]).find(x=>x.id===id),app=$('#app');
+if(!p){app.innerHTML='<p>Project not found. <a class="plink" href="index.html#projects">Back to all projects</a></p>'}
+else{
+ document.title=p.title+' | '+(P.shortName||'Portfolio');
+ const gh=p.repo?'<a class="btn" href="'+esc(p.repo)+'" target="_blank" rel="noopener">'+GH+'View on GitHub &#8594;</a>':'';
+ const ex=p.extra&&p.extra.url?'<a class="plink" href="'+esc(p.extra.url)+'" target="_blank" rel="noopener">'+esc(p.extra.text||'More')+' &#8599;</a>':'';
+ const sec=(t,x)=>x?'<h2>'+t+'</h2><p>'+esc(x)+'</p>':'';
+ const blocks=(p.blocks||[]).map(b=>b.type==='h2'?'<h2>'+esc(b.text)+'</h2>':b.type==='p'?'<p>'+esc(b.text)+'</p>':
+  b.type==='ul'?'<ul>'+(b.items||[]).map(i=>'<li>'+esc(i)+'</li>').join('')+'</ul>':
+  b.type==='img'?'<figure><img src="'+esc(b.src)+'" alt="'+esc(b.caption||p.title)+'" loading="lazy">'+(b.caption?'<figcaption>'+esc(b.caption)+'</figcaption>':'')+'</figure>':'').join('');
+ const video=p.video?'<h2>Video walkthrough</h2><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(p.video)+'?rel=0&modestbranding=1" title="'+esc(p.title)+' video" allow="accelerometer;autoplay;encrypted-media;picture-in-picture;fullscreen" allowfullscreen loading="lazy"></iframe></div>':'';
+ app.className=p.color?'c-'+esc(p.color):'';
+ app.innerHTML=(p.badge?'<span class="badge">'+esc(p.badge)+'</span>':'')+'<h1>'+esc(p.title)+'</h1><p class="lead">'+esc(p.description)+'</p>'+
+ (p.cover?'<div class="cover"><img src="'+esc(p.cover)+'" alt="'+esc(p.title)+'"></div>':'')+
+ ((p.metrics||[]).length?'<div class="stats">'+p.metrics.map(m=>'<div><b>'+esc(m[0])+'</b><small>'+esc(m[1])+'</small></div>').join('')+'</div>':'')+
+ (p.note?'<p class="note">'+esc(p.note)+'</p>':'')+
+ '<div class="tags">'+(p.tags||[]).map(t=>'<em>'+esc(t)+'</em>').join('')+'</div>'+
+ '<div class="btns">'+gh+ex+'</div>'+
+ '<article>'+sec('Problem',p.problem)+sec('Approach',p.approach)+sec('Result',p.result)+blocks+video+'</article>'+
+ '<div class="btns bottom">'+gh+'<a class="plink" href="index.html#projects">&larr; All projects</a></div>';
+}
+document.addEventListener('click',e=>{const i=e.target.closest('.cover img,figure img');if(i){$('#lbi').src=i.src;$('#lb').classList.add('on')}else if(e.target.closest('#lb'))$('#lb').classList.remove('on')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#lb').classList.remove('on')});
+</script></body></html>
