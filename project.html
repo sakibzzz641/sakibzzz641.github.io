@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project | Md. Sakib Al Hasan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="projects.css">
+<style>body{margin:0;background:var(--pj-bg)}</style>
+</head>
+<body>
+<main class="case-wrap">
+  <a class="case-back" href="index.html#projects">← Back to projects</a>
+  <header class="case-head" id="head"></header>
+  <section class="case-body" id="body"><div class="case-state">Loading project…</div></section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+<script src="projects-data.js"></script>
+<script>
+(function () {
+  var head = document.getElementById('head');
+  var body = document.getElementById('body');
+  var id = new URLSearchParams(location.search).get('id');
+  var p = (window.PROJECTS || []).find(function (x) { return x.id === id; });
+  var esc = function (s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  };
+
+  if (!p) {
+    head.innerHTML = '<h1>Project not found</h1>';
+    body.innerHTML = '<div class="case-state">No project with this link. <a href="index.html#projects">Go back to all projects</a>.</div>';
+    return;
+  }
+
+  document.title = p.title + ' | Md. Sakib Al Hasan';
+  var tags = (p.tags || []).map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('');
+  head.innerHTML =
+    (p.category ? '<span class="pj-pill" style="display:inline-block">' + esc(p.category) + '</span>' : '') +
+    '<h1>' + esc(p.title) + '</h1><p>' + esc(p.summary) + '</p>' +
+    (tags ? '<div class="pj-tags">' + tags + '</div>' : '') +
+    '<div class="case-btns">' +
+    (p.repo ? '<a class="primary" href="https://github.com/' + esc(p.repo) + '" target="_blank" rel="noopener">View code on GitHub</a>' : '') +
+    '<a href="index.html#projects">Back</a></div>';
+
+  function fail() {
+    body.innerHTML = '<div class="case-state">Could not load the project details.' +
+      (p.repo ? ' <a href="https://github.com/' + esc(p.repo) + '" target="_blank" rel="noopener">Open the README on GitHub</a>.' : '') + '</div>';
+  }
+
+  // ১) নিজের বানানো HTML থাকলে সেটা দেখাও
+  if (p.caseHtml) {
+    var f = document.createElement('iframe');
+    f.className = 'case-frame';
+    f.title = p.title + ' details';
+    f.src = p.caseHtml;
+    f.onload = function () {
+      try { f.style.height = f.contentDocument.documentElement.scrollHeight + 'px'; } catch (e) {}
+    };
+    body.innerHTML = '';
+    body.appendChild(f);
+    return;
+  }
+
+  // ২) নইলে GitHub README
+  if (!p.repo) { fail(); return; }
+  var branches = p.branch ? [p.branch] : ['main', 'master'];
+
+  function load(i) {
+    if (i >= branches.length) { fail(); return; }
+    var b = branches[i];
+    var base = 'https://raw.githubusercontent.com/' + p.repo + '/' + b + '/';
+    fetch(base + 'README.md')
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (md) { render(md, base, b); })
+      .catch(function () { load(i + 1); });
+  }
+
+  function render(md, base, branch) {
+    var html = DOMPurify.sanitize(marked.parse(md));
+    var box = document.createElement('div');
+    box.className = 'md';
+    box.innerHTML = html;
+    var abs = function (u) { return /^(https?:|data:|#|mailto:)/i.test(u) ? u : base + u.replace(/^\.?\//, ''); };
+    box.querySelectorAll('img').forEach(function (im) { im.setAttribute('src', abs(im.getAttribute('src') || '')); });
+    box.querySelectorAll('a').forEach(function (a) {
+      var h = a.getAttribute('href') || '';
+      if (h && !/^(https?:|#|mailto:)/i.test(h)) {
+        a.setAttribute('href', 'https://github.com/' + p.repo + '/blob/' + branch + '/' + h.replace(/^\.?\//, ''));
+      }
+      if (/^https?:/i.test(a.getAttribute('href') || '')) { a.target = '_blank'; a.rel = 'noopener'; }
+    });
+    body.innerHTML = '';
+    body.appendChild(box);
+  }
+
+  load(0);
+})();
+</script>
+</body>
+</html>
