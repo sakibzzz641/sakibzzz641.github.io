@@ -169,7 +169,7 @@ skills: [
       title: "Computer Basic and ICT Applications",
       issuer: "Dept. of Youth Development, Ministry of Youth and Sports, Govt. of Bangladesh",
       details: [["Period", "Jul\u2013Dec 2024"], ["Grade", "A+"], ["Certificate ID", "141231"], ["Covers", "MS Word, Excel, Access, PowerPoint"]],
-      link: ""   // TODO: ICT certificate link
+      link: "assets/img/computer_basic_and_ ict_application.jpg"   // TODO: ICT certificate link
     }
   ],
 
