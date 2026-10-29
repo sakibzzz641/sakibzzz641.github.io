@@ -104,7 +104,7 @@ skills: [
       description: "Interactive 4-page dashboard on 25,035 retail orders (2011-2014): sales, profit, products, regions and customers.",
       tags: ["Power Query", "DAX", "PivotTable"],
       category: ["Excel", "Data Analysis"],
-      repo: "https://github.com/sakibzzz641/EXCEL-REPO-NAME",   // TODO: EXCEL-REPO-NAME bodle repo er asol naam dao
+      repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",   // TODO: EXCEL-REPO-NAME bodle repo er asol naam dao
       demo: "",
       image: "",
       thumb: "mix"
@@ -149,7 +149,7 @@ skills: [
       color: "orange",
       tags: ["Excel", "Power Query", "DAX"],
       category: ["Excel", "Data Analysis"],
-      repo: "https://github.com/sakibzzz641/EXCEL-REPO-NAME",   // TODO: asol repo naam dao
+      repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",   // TODO: asol repo naam dao
       problem: "Management needed quick answers on sales, profit, products, regions, customers and shipping from 25,035 retail orders (2011-2014).",
       approach: "Cleaned the data with Power Query, modelled it in the Excel Data Model, wrote DAX measures, then built PivotTable dashboards with slicers across 4 pages.",
       result: "Discounts above 20% push profit margin below zero, and Technology leads with 37.5% of total sales."
