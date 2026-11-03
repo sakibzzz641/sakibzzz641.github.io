@@ -169,8 +169,14 @@ skills: [
       title: "Computer Basic and ICT Applications",
       issuer: "Dept. of Youth Development, Ministry of Youth and Sports, Govt. of Bangladesh",
       details: [["Period", "Jul\u2013Dec 2024"], ["Grade", "A+"], ["Certificate ID", "141231"], ["Covers", "MS Word, Excel, Access, PowerPoint"]],
-      link: "assets/img/computer_basic_and_ ict_application.jpg"   // TODO: ICT certificate link
-    }
+      link: "assets/pdf/computer_basic_and_ ict_application.pdf"   // TODO: ICT certificate link
+    },
+   {
+    title: "Business Case Solving",
+    issuer: "10 Minute School",
+    details: [["Issued", "Nov 2, 2026"], ["Certificate ID", "6ae874d564bc5"], ["Covers", "SWOT Analysis, P.E.S.T.E.L, Porter's Five Forces, Case Reading Strategy"]],
+    link: "assets/pdf/business_case_solving.pdf"   // TODO: Business Case Solving certificate link
+   }
   ],
 
   // ---------- About ----------
