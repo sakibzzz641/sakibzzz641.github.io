@@ -24,7 +24,7 @@ function init(){
  document.body.classList.add('c-'+(p.color||'green'));
  $('#phead').innerHTML='<div class="wrap">'+[...(p.category||[]),...(p.tags||[])].map(t=>'<span class="pill">'+esc(t)+'</span>').join('')+
   '<h1>'+esc(p.title)+'</h1><p class="lead">'+esc(p.description)+'</p><div class="cta">'+
-  lnk(p.repo,'GitHub Repository &#8599;','btn fill',1)+lnk(p.demo,'Live Demo &#8599;','btn line',1)+'</div></div>';
+  lnk(p.repo,'GitHub Repository &#8599;','btn fill',1)+lnk(p.liveApp,'Live App &#8599;','btn line',1)+'</div></div>';
 
  const toc=[],seen={};
  const slug=s=>s.toLowerCase().replace(/<[^>]+>/g,'').replace(/[^\p{L}\p{N}]+/gu,'-').replace(/^-+|-+$/g,'')||'section';

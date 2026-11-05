@@ -63,7 +63,12 @@ skills: [
   // ---------- Featured Projects ----------
   // color: "green" | "orange" | "blue" | "purple" (card er border/outline er rong)
   // image: "assets/img/projects/xxx.png" dile screenshot dekhabe, khali thakle chhoto chart dekhabe
+  // liveApp: live app link dile card-e Live App button dekhabe, khali thakle dekhabe na
   // thumb (image na thakle): "dots" | "mix" | "up"
+  // Featured Projects-er clickable filter button (All, Data Science, Clustering...)
+  // ekhankar protiti project's category array theke automatically toiri hoy.
+  // Notun filter add korte je project-gulote filter chan, sekhane category-te naam din:
+  // category: ["Data Science", "Power BI"]
   projects: [
     {
       id: "customer-segmentation",
@@ -73,8 +78,8 @@ skills: [
       tags: ["Python", "PCA", "Clustering"],
       category: ["Data Science", "Clustering"],
       repo: "https://github.com/sakibzzz641/Customer-Segmentation-Kmeans-dbscan-clustering",
-      demo: "",
-      image: "",
+      liveApp: "https://customer-segmentation-kmeans-dbscan-clustering.streamlit.app/",
+      image: "projects/project/customer-segmentation/cover.jpg",
       thumb: "dots"
     },
     {
@@ -85,7 +90,7 @@ skills: [
       tags: ["XGBoost", "SMOTE", "Classification"],
       category: ["Data Science", "Classification"],
       repo: "https://github.com/sakibzzz641/Telco-Customer-Churn-Prediction",   // TODO: churn repo link
-      demo: "",
+      liveApp: "",
       image: "",
       thumb: "mix"
     },
@@ -97,8 +102,8 @@ skills: [
       tags: ["Regression", "SHAP", "Cross-Validation"],
       category: ["Data Science", "Regression"],
       repo: "https://github.com/sakibzzz641/Insurance-charges-regression",   // TODO: insurance repo link
-      demo: "",
-      image: "",
+      liveApp: "",
+      image: "projects/project/Medical-Insurance-Cost-Prediction/cover.jpg",
       thumb: "up"
     },
     {
@@ -106,10 +111,10 @@ skills: [
       title: "Global Superstore Sales & Profit Dashboard (Excel)",
       color: "orange",
       description: "Interactive 4-page dashboard on 25,035 retail orders (2011-2014): sales, profit, products, regions and customers.",
-      tags: ["Power Query", "DAX", "PivotTable"],
+      tags: ["Excel", "Power Query", "DAX", "PivotTable", "Dashboard"],
       category: ["Excel", "Data Analysis"],
       repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",   // TODO: EXCEL-REPO-NAME bodle repo er asol naam dao
-      demo: "",
+      liveApp: "",
       image: "",
       thumb: "mix"
     }
@@ -117,6 +122,9 @@ skills: [
   ],
 
   // ---------- Case Studies ----------
+  // Case Studies-er clickable filter button-o niche-r category array theke automatically toiri hoy.
+  // Notun filter add korte relevant case-er category-te naam din:
+  // category: ["Data Science", "Power BI"]
   cases: [
     {
       title: "Credit Card Customer Segmentation",

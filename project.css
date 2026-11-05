@@ -18,7 +18,7 @@ nav{display:flex;align-items:center;justify-content:space-between;height:64px}
 /* project head */
 .phead{background:var(--dark);color:#fff;padding:52px 0 44px;border-bottom:4px solid var(--ac)}
 .pill{display:inline-block;border:1px solid #2f4540;border-radius:999px;padding:3px 12px;font-size:.74rem;color:#cdd9d4;margin:0 6px 6px 0}
-.phead h1{font-family:var(--serif);font-size:clamp(1.7rem,4.4vw,2.8rem);line-height:1.15;margin:14px 0 12px;max-width:760px}
+.phead h1{font-family:var(--serif);font-size:clamp(1.7rem,4.4vw,2.8rem);line-height:1.15;margin:14px 0 12px;max-width:760px;overflow-wrap:anywhere}
 .phead .lead{color:#b9c7c2;max-width:620px;margin-bottom:24px}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
 .phead .btn.fill{background:var(--ac);border-color:var(--ac);color:#fff}.phead .btn.fill:hover{filter:brightness(1.12)}
@@ -70,5 +70,29 @@ img.zoom{display:block;max-width:100%;margin:0 auto 1.2rem;border-radius:10px;bo
 #lb button{position:absolute;background:rgba(255,255,255,.12);border:0;color:#fff;font-size:1.8rem;width:44px;height:44px;border-radius:50%;cursor:pointer}
 #lb .x{top:16px;right:16px}#lb .pv{left:16px;top:50%}#lb .nx{right:16px;top:50%}
 footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-size:.82rem}
-@media(max-width:860px){.layout{grid-template-columns:1fr;gap:24px}#toc{position:static;order:-1;max-height:none;border-left:0;border-bottom:1px solid var(--line);padding:0 0 12px}}
+@media(max-width:860px){
+ .wrap{padding-left:20px;padding-right:20px}
+ .phead{padding:42px 0 36px}
+ .layout{grid-template-columns:1fr;gap:24px;padding-top:32px;padding-bottom:36px}
+ #toc{position:static;order:-1;max-height:none;border-left:0;border-bottom:1px solid var(--line);padding:0 0 12px}
+}
+@media(max-width:560px){
+ .wrap{padding-left:16px;padding-right:16px}
+ .phead{padding:34px 0 30px}
+ .phead h1{font-size:clamp(1.7rem,9vw,2.3rem)}
+ .phead .lead{font-size:.92rem}
+ .phead .cta .btn{width:100%;text-align:center}
+ .layout{padding-top:24px;gap:18px}
+ .prose{font-size:.92rem;line-height:1.7}
+ .prose h2{font-size:1.4rem}
+ .prose h3{font-size:1.1rem}
+ .dtbar input{min-width:0;width:100%}
+ .dtbar{align-items:stretch}
+ #more{padding-bottom:36px}
+ .mlist{grid-template-columns:1fr}
+ #lb{padding:16px}
+ #lb img{max-width:86vw;max-height:72vh}
+ #lb .pv{left:8px}
+ #lb .nx{right:8px}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
