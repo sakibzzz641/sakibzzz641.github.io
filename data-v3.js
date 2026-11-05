@@ -28,7 +28,7 @@ const DATA = {
   // ---------- Hero tags ----------
   heroTags: {
     top: ["Data Science", "Machine Learning", "Python", "SQL", "Pandas", "NumPy", "Statistical Analysis"],
-    bottom: ["Junior Data Scientist", "Scikit-learn", "XGBoost", "EDA", "Feature Engineering", "Data Visualization"]
+    bottom: ["Data Scientist", "Scikit-learn", "XGBoost", "EDA", "Feature Engineering", "Data Visualization"]
   },
 
   // ---------- Skills ----------
@@ -66,6 +66,7 @@ skills: [
   // thumb (image na thakle): "dots" | "mix" | "up"
   projects: [
     {
+      id: "customer-segmentation",
       title: "Customer Segmentation",
       color: "green",
       description: "Segmented 8,950 credit card customers with K-Means, Hierarchical and DBSCAN clustering after PCA (95% variance).",
@@ -77,6 +78,7 @@ skills: [
       thumb: "dots"
     },
     {
+      id: "telco-customer-churn-prediction",
       title: "Telco Customer Churn Prediction",
       color: "green",
       description: "Compared 6 models on 7,043 customers. Best result: 0.844 ROC-AUC with 77% recall on likely churners.",
@@ -88,6 +90,7 @@ skills: [
       thumb: "mix"
     },
     {
+      id: "medical-insurance-cost-prediction",
       title: "Medical Insurance Cost Prediction",
       color: "green",
       description: "Regression pipeline on 1,337 records. R\u00B2 of 0.85, with SHAP showing smoking status and age drive cost.",
@@ -99,6 +102,7 @@ skills: [
       thumb: "up"
     },
     {
+      id: "global-superstore-sales-profit-dashboard-excel",
       title: "Global Superstore Sales & Profit Dashboard (Excel)",
       color: "orange",
       description: "Interactive 4-page dashboard on 25,035 retail orders (2011-2014): sales, profit, products, regions and customers.",
@@ -181,10 +185,10 @@ skills: [
 
   // ---------- About ----------
   about: {
-    subtitle: "Junior Data Scientist from Narsingdi, Bangladesh.",
+    subtitle: "Data Scientist from Narsingdi, Bangladesh.",
     paragraphs: [
       "I am a Mathematics (Hons) student who builds end-to-end data projects in Python: data cleaning, EDA, feature engineering, modeling and evaluation.",
-      "I am looking for an entry-level Data Scientist or Data Analyst role where I can keep learning and turn data into decisions."
+      "I am seeking opportunities as a Data Scientist or Data Analyst to turn data into clear, actionable decisions."
     ],
     education: [
       { title: "B.Sc. (Hons) in Mathematics", note: "Govt. Shahid Asad College, Shibpur, Narsingdi. 4th year, expected 2027." },
@@ -194,6 +198,6 @@ skills: [
 
   // ---------- Contact ----------
   contact: {
-    text: "Open to entry-level Data Scientist and Data Analyst roles."
+    text: "Open to Data Scientist and Data Analyst opportunities."
   }
 };

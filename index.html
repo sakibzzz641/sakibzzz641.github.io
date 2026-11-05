@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Md. Sakib Al Hasan | Junior Data Scientist</title>
-<meta name="description" content="Portfolio of Md. Sakib Al Hasan, Junior Data Scientist: customer segmentation, churn prediction and cost prediction projects in Python.">
+<title>Md. Sakib Al Hasan | Data Scientist</title>
+<meta name="description" content="Portfolio of Md. Sakib Al Hasan, Data Scientist: customer segmentation, churn prediction and cost prediction projects in Python.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
@@ -107,9 +107,12 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
 .fbtn:hover{border-color:var(--green2);color:var(--ink)}
 .fbtn.on{background:var(--green);border-color:var(--green);color:#fff}
 .case a.more{display:inline-block;margin-top:10px;font-size:.85rem;font-weight:600;color:var(--ac,var(--green))}
+.case a.more+a.more{margin-left:16px}
 [hidden]{display:none!important}
-.proj .links{margin-top:auto;display:flex;gap:16px}
+.proj .links{margin-top:auto;display:flex;gap:16px;flex-wrap:wrap}
 .proj .links a.more{margin-top:0}
+.proj a.more.ghost{color:var(--mute);font-weight:500}
+.proj a.more.ghost:hover{color:var(--ink)}
 .thumb.img{padding:0;display:block}
 .thumb.img img{width:100%;height:100%;object-fit:cover;display:block}
 
@@ -261,13 +264,13 @@ function drawProjects(f){
 $('#projectList').innerHTML=pick(D.projects,f).map(p=>'<article class="proj'+(p.color?' c-'+esc(p.color):'')+'">'+
  (p.image?'<div class="thumb img"><img src="'+esc(p.image)+'" alt="'+esc(p.title)+'" loading="lazy"></div>':(FB[p.thumb]||FB.mix))+
  '<div class="body"><h3>'+esc(p.title)+'</h3><p>'+esc(p.description)+'</p>'+tags(p.tags)+
- '<div class="links">'+lnk(p.repo,'View Project &#8599;','more',true)+lnk(p.demo,'Live Demo &#8599;','more',true)+'</div></div></article>').join('');
+'<div class="links">'+(p.id?lnk('project.html?id='+encodeURIComponent(p.id),'View Details &rarr;','more'):'')+lnk(p.repo,'GitHub &#8599;','more ghost',true)+lnk(p.demo,'Live Demo &#8599;','more ghost',true)+'</div></div></article>').join('');
 }
 filterBar('#projFilters',D.projects,drawProjects);
 
 // case studies
 function drawCases(f){
-$('#caseList').innerHTML=pick(D.cases,f).map(c=>'<div class="case'+(c.color?' c-'+esc(c.color):'')+'"><div><h3>'+esc(c.title)+'</h3>'+tags(c.tags)+lnk(c.repo,'View Project &#8599;','more',true)+'</div>'+
+$('#caseList').innerHTML=pick(D.cases,f).map(c=>'<div class="case'+(c.color?' c-'+esc(c.color):'')+'"><div><h3>'+esc(c.title)+'</h3>'+tags(c.tags)+(c.id?lnk('project.html?id='+encodeURIComponent(c.id),'View Details &rarr;','more'):'')+lnk(c.repo,'GitHub &#8599;','more',true)+'</div>'+
  '<div><h4>Problem</h4><p>'+esc(c.problem)+'</p></div><div><h4>Approach</h4><p>'+esc(c.approach)+'</p></div><div><h4>Result</h4><p>'+esc(c.result)+'</p></div></div>').join('');
 }
 filterBar('#caseFilters',D.cases,drawCases);
