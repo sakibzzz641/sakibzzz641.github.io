@@ -115,7 +115,7 @@ skills: [
       category: ["Excel", "Data Analysis"],
       repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",   // TODO: EXCEL-REPO-NAME bodle repo er asol naam dao
       liveApp: "",
-      image: "",
+      image: "projects/project/Global-Superstore-Sales-Dashboard-(Excel)/cover.jpg",
       thumb: "mix"
     }
     // Notun project: ekta { ... } block copy kore comma diye boshao (SQL / Power BI o ekbhabe)
