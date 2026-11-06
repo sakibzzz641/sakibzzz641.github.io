@@ -1,0 +1,7 @@
+Order,Region,Category,Sales,Profit
+SAMPLE-1,East,Technology,1200,310
+SAMPLE-2,West,Furniture,800,-45
+SAMPLE-3,South,Office,430,96
+SAMPLE-4,East,Furniture,950,120
+SAMPLE-5,West,Technology,1500,420
+SAMPLE-6,South,Technology,900,180

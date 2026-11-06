@@ -12,7 +12,7 @@ const DATA = {
     name: "Md. Sakib Al Hasan",
     shortName: "Sakib Al Hasan",          // nav bar e dekhabe
     initials: "SH",                        // photo na thakle eta dekhabe
-    tagline: "I turn raw data into useful predictions and clear decisions. Explore my projects and case studies to see how I solve real-world problems with Python and machine learning.",
+    tagline: "I turn raw data into clear insights, dashboards and useful predictions. Explore my projects and case studies to see how I solve real-world problems with Python, SQL, Excel and machine learning.",
     photo: "assets/img/photo.png",         // photo upload korle auto boshbe
     cv: "assets/cv/Sakib_Al_Hasan_Data_Science.pdf"
   },
@@ -27,8 +27,8 @@ const DATA = {
 
   // ---------- Hero tags ----------
   heroTags: {
-    top: ["Data Science", "Machine Learning", "Python", "SQL", "Pandas", "NumPy", "Statistical Analysis"],
-    bottom: ["Junior Data Scientist", "Scikit-learn", "XGBoost", "EDA", "Feature Engineering", "Data Visualization"]
+    top: ["Data Analysis", "Data Science", "Machine Learning", "Python", "SQL", "Excel", "Pandas", "NumPy"],
+    bottom: ["Data Analyst", "Data Scientist", "Scikit-learn", "XGBoost", "EDA", "Power Query & DAX", "Data Visualization"]
   },
 
   // ---------- Skills ----------
@@ -63,56 +63,68 @@ skills: [
   // ---------- Featured Projects ----------
   // color: "green" | "orange" | "blue" | "purple" (card er border/outline er rong)
   // image: "assets/img/projects/xxx.png" dile screenshot dekhabe, khali thakle chhoto chart dekhabe
+  // liveApp: live app link dile card-e Live App button dekhabe, khali thakle dekhabe na
   // thumb (image na thakle): "dots" | "mix" | "up"
+  // Featured Projects-er clickable filter button (All, Data Science, Clustering...)
+  // ekhankar protiti project's category array theke automatically toiri hoy.
+  // Notun filter add korte je project-gulote filter chan, sekhane category-te naam din:
+  // category: ["Data Science", "Power BI"]
   projects: [
     {
+      id: "customer-segmentation",
       title: "Customer Segmentation",
       color: "green",
       description: "Segmented 8,950 credit card customers with K-Means, Hierarchical and DBSCAN clustering after PCA (95% variance).",
       tags: ["Python", "PCA", "Clustering"],
       category: ["Data Science", "Clustering"],
       repo: "https://github.com/sakibzzz641/Customer-Segmentation-Kmeans-dbscan-clustering",
-      demo: "",
-      image: "",
+      liveApp: "https://customer-segmentation-kmeans-dbscan-clustering.streamlit.app/",
+      image: "projects/project/customer-segmentation/cover.jpg",
       thumb: "dots"
     },
     {
+      id: "telco-customer-churn-prediction",
       title: "Telco Customer Churn Prediction",
       color: "green",
       description: "Compared 6 models on 7,043 customers. Best result: 0.844 ROC-AUC with 77% recall on likely churners.",
       tags: ["XGBoost", "SMOTE", "Classification"],
       category: ["Data Science", "Classification"],
       repo: "https://github.com/sakibzzz641/Telco-Customer-Churn-Prediction",   // TODO: churn repo link
-      demo: "",
-      image: "",
+      liveApp: "",
+      image: "projects/project/Telco-Customer-Churn-Prediction/cover.jpg",
       thumb: "mix"
     },
     {
+      id: "medical-insurance-cost-prediction",
       title: "Medical Insurance Cost Prediction",
       color: "green",
       description: "Regression pipeline on 1,337 records. R\u00B2 of 0.85, with SHAP showing smoking status and age drive cost.",
       tags: ["Regression", "SHAP", "Cross-Validation"],
       category: ["Data Science", "Regression"],
       repo: "https://github.com/sakibzzz641/Insurance-charges-regression",   // TODO: insurance repo link
-      demo: "",
-      image: "",
+      liveApp: "",
+      image: "projects/project/Medical-Insurance-Cost-Prediction/cover.jpg",
       thumb: "up"
     },
     {
-      title: "Global Superstore Sales & Profit Dashboard (Excel)",
+      id: "global-superstore-sales-profit-dashboard-excel",
+      title: "Global Superstore Sales & Profit Dashboard Excel",
       color: "orange",
-      description: "Interactive 4-page dashboard on 25,035 retail orders (2011-2014): sales, profit, products, regions and customers.",
-      tags: ["Power Query", "DAX", "PivotTable"],
+      description: "Interactive 4-page dashboard on 25,035 retail orders ($12.6M sales, $1.47M profit): products, regions and customers.",
+      tags: ["Excel", "Power Query", "DAX", "PivotTable", "Dashboard"],
       category: ["Excel", "Data Analysis"],
       repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",   // TODO: EXCEL-REPO-NAME bodle repo er asol naam dao
-      demo: "",
-      image: "",
+      liveApp: "",
+      image: "projects/project/Global-Superstore-Sales-Dashboard-Excel/cover.jpg",
       thumb: "mix"
     }
     // Notun project: ekta { ... } block copy kore comma diye boshao (SQL / Power BI o ekbhabe)
   ],
 
   // ---------- Case Studies ----------
+  // Case Studies-er clickable filter button-o niche-r category array theke automatically toiri hoy.
+  // Notun filter add korte relevant case-er category-te naam din:
+  // category: ["Data Science", "Power BI"]
   cases: [
     {
       title: "Credit Card Customer Segmentation",
@@ -181,10 +193,10 @@ skills: [
 
   // ---------- About ----------
   about: {
-    subtitle: "Junior Data Scientist from Narsingdi, Bangladesh.",
+    subtitle: "Data Analyst and Data Scientist from Narsingdi, Bangladesh.",
     paragraphs: [
-      "I am a Mathematics (Hons) student who builds end-to-end data projects in Python: data cleaning, EDA, feature engineering, modeling and evaluation.",
-      "I am looking for an entry-level Data Scientist or Data Analyst role where I can keep learning and turn data into decisions."
+      "I am a Mathematics (Hons) student with hands-on experience in Python, SQL, Excel, data analysis, machine learning and data visualization. I build end-to-end projects: data cleaning, EDA, feature engineering, modeling, evaluation and dashboards.",
+      "I am seeking a challenging Data Analyst or Data Scientist role where I can turn data into clear, actionable decisions."
     ],
     education: [
       { title: "B.Sc. (Hons) in Mathematics", note: "Govt. Shahid Asad College, Shibpur, Narsingdi. 4th year, expected 2027." },
@@ -194,6 +206,6 @@ skills: [
 
   // ---------- Contact ----------
   contact: {
-    text: "Open to entry-level Data Scientist and Data Analyst roles."
+    text: "Open to Data Analyst and Data Scientist opportunities."
   }
 };

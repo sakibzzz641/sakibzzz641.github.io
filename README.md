@@ -1,6 +1,6 @@
 # Md. Sakib Al Hasan | Portfolio
 
-Personal portfolio website of **Md. Sakib Al Hasan**, Junior Data Scientist from Narsingdi, Bangladesh.
+Personal portfolio website of **Md. Sakib Al Hasan**, Data Scientist from Narsingdi, Bangladesh.
 
 **Live site:** https://sakibzzz641.github.io
 

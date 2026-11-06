@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
+body{font-family:Inter,system-ui,sans-serif;margin:0;padding:16px;color:#0f1f1d;background:#fff}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+button{font:inherit;font-size:.82rem;padding:6px 14px;border-radius:999px;border:1px solid #dbe2de;background:#fff;cursor:pointer}
+button.on{background:#1f7a5c;border-color:#1f7a5c;color:#fff}
+.row{display:grid;grid-template-columns:90px 1fr 60px;gap:10px;align-items:center;margin:10px 0;font-size:.85rem}
+.t{background:#e4f1ec;border-radius:4px;height:18px}.t i{display:block;height:100%;background:#1f7a5c;border-radius:4px;transition:width .3s}
+small{color:#5d6b66}
+</style></head><body>
+<div class="bar" id="m"></div><div class="bar" id="r"></div><div id="c"></div><small>Sample data for demonstration only.</small>
+<script>
+const R=[["East","Technology",120,30],["East","Furniture",80,-5],["East","Office",60,12],["West","Technology",150,42],["West","Furniture",70,4],["West","Office",90,20],["South","Technology",90,18],["South","Furniture",50,-8],["South","Office",40,9]];
+let m=2,reg="All";const $=id=>document.getElementById(id);
+function btns(el,items,on,fn){el.innerHTML=items.map(x=>'<button class="'+(on(x)?'on':'')+'">'+x[0]+'</button>').join('');[...el.children].forEach((b,i)=>b.onclick=()=>{fn(items[i][1]);draw()})}
+function draw(){
+ btns($('m'),[["Sales",2],["Profit",3]],x=>x[1]===m,v=>m=v);
+ btns($('r'),["All","East","West","South"].map(x=>[x,x]),x=>x[1]===reg,v=>reg=v);
+ const cats=["Technology","Furniture","Office"],t=cats.map(c=>R.filter(r=>r[1]===c&&(reg==="All"||r[0]===reg)).reduce((s,r)=>s+r[m],0)),mx=Math.max(...t.map(Math.abs),1);
+ $('c').innerHTML=cats.map((c,i)=>'<div class="row"><span>'+c+'</span><div class="t"><i style="width:'+Math.abs(t[i])/mx*100+'%;'+(t[i]<0?'background:#e08a4b':'')+'"></i></div><b>'+t[i]+'</b></div>').join('')}
+draw();
+</script></body></html>
