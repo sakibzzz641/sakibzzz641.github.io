@@ -3,6 +3,20 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const lnk=(h,t,c,x)=>h?'<a class="'+c+'" href="'+esc(h)+'"'+(x?' target="_blank" rel="noopener"':'')+'>'+t+'</a>':'';
 const D=DATA,P=D.profile,projects=D.projects||[];
+const revealObserver=window.matchMedia('(prefers-reduced-motion: reduce)').matches?null:new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   entry.target.classList.add('is-visible');
+   revealObserver.unobserve(entry.target);
+  }
+ });
+},{threshold:.12,rootMargin:'0px 0px -40px'});
+function revealElements(){
+ document.querySelectorAll('.reveal').forEach(el=>{
+  if(revealObserver)revealObserver.observe(el);
+  else el.classList.add('is-visible');
+ });
+}
 const id=new URLSearchParams(location.search).get('id');
 const p=projects.find(x=>x.id===id);
 
@@ -22,7 +36,7 @@ if(!p){
 function init(){
  document.title=p.title+' | '+P.name;
  document.body.classList.add('c-'+(p.color||'green'));
- $('#phead').innerHTML='<div class="wrap">'+[...(p.category||[]),...(p.tags||[])].map(t=>'<span class="pill">'+esc(t)+'</span>').join('')+
+ $('#phead').innerHTML='<div class="wrap reveal">'+[...(p.category||[]),...(p.tags||[])].map(t=>'<span class="pill">'+esc(t)+'</span>').join('')+
   '<h1>'+esc(p.title)+'</h1><p class="lead">'+esc(p.description)+'</p><div class="cta">'+
   lnk(p.repo,'GitHub Repository &#8599;','btn fill',1)+lnk(p.liveApp,'Live App &#8599;','btn line',1)+'</div></div>';
 
@@ -50,7 +64,9 @@ function init(){
 
  fetch(p.page||'projects/'+p.id+'.md').then(r=>{if(!r.ok)throw 0;return r.text()}).then(md=>{
   $('#doc').innerHTML=marked.parse(md);
+  $('#doc').classList.add('reveal');
   buildToc(toc);initTables();initMermaid();initLightbox();
+  revealElements();
  }).catch(()=>{
   $('#toc').remove();
   $('#doc').innerHTML='<p class="note">The full write-up for this project is not available yet. Add <code>projects/'+esc(p.id)+'.md</code> to publish it. If you opened this file straight from disk, run a local server instead (for example <code>python -m http.server</code>), because browsers block file loading from <code>file://</code>.</p>';
