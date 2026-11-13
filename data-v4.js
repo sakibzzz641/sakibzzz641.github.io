@@ -112,10 +112,22 @@ skills: [
       color: "orange",
       description: "Interactive 4-page dashboard on 25,035 retail orders ($12.6M sales, $1.47M profit): products, regions and customers.",
       tags: ["Excel", "Power Query", "DAX", "PivotTable", "Dashboard"],
-      category: ["Excel", "Data Analysis"],
+      category: ["Excel", "Data Analysis", "Dashboard" ],
       repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",   // TODO: EXCEL-REPO-NAME bodle repo er asol naam dao
       liveApp: "",
       image: "projects/project/Global-Superstore-Sales-Dashboard-Excel/cover.jpg",
+      thumb: "mix"
+    },
+    {
+      id: "supply-chain-logistics-dashboard-excel",
+      title: "Supply Chain Logistics Dashboard Excel & VBA",
+      color: "orange",
+      description: "Interactive 7-page dashboard on 9,215 supply-chain orders (29.5M units, 19 plants): orders, freight, warehouses and delivery risk.",
+      tags: ["Excel", "Power Query", "PivotTable", "VBA", "Dashboard"],
+      category: ["Excel", "Data Analysis", "Dashboard"],
+      repo: "https://github.com/sakibzzz641/Supply_Chain_Logistics_Analytics_Dashboard_Excel_and_VBA",
+      liveApp: "",
+      image: "projects/project/Supply-Chain-Logistics-Dashboard-Excel/cover.jpg",
       thumb: "mix"
     }
     // Notun project: ekta { ... } block copy kore comma diye boshao (SQL / Power BI o ekbhabe)
@@ -159,12 +171,22 @@ skills: [
     {
       title: "Global Superstore Sales & Profit Dashboard",
       color: "orange",
-      tags: ["Excel", "Power Query", "DAX"],
-      category: ["Excel", "Data Analysis"],
+      tags: ["Excel", "Power Query", "DAX", "Dashboard"],
+      category: ["Excel", "Data Analysis", "Dashboard"],
       repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",   // TODO: asol repo naam dao
       problem: "Management needed quick answers on sales, profit, products, regions, customers and shipping from 25,035 retail orders (2011-2014).",
       approach: "Cleaned the data with Power Query, modelled it in the Excel Data Model, wrote DAX measures, then built PivotTable dashboards with slicers across 4 pages.",
       result: "Discounts above 20% push profit margin below zero, and Technology leads with 37.5% of total sales."
+    },
+    {
+      title: "Supply Chain Logistics Risk Dashboard",
+      color: "orange",
+      tags: ["Excel", "Power Query", "VBA", "Dashboard"],
+      category: ["Excel", "Data Analysis", "Dashboard"],
+      repo: "https://github.com/sakibzzz641/Supply_Chain_Logistics_Analytics_Dashboard_Excel_and_VBA",
+      problem: "Seven separate tables made it hard to see late orders, freight cost, warehouse cost and which ports, plants or carriers the business depends on too much.",
+      approach: "Cleaned 7 tables with Power Query, built PivotTables and PivotCharts with slicers across 7 pages, and added VBA buttons plus a Key Takeaways page.",
+      result: "98% of orders ship from one port and one plant carries 95% of warehouse cost. The busiest carrier (68% of orders) is also the least reliable at 2.9% late."
     }
   ],
 
