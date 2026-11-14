@@ -78,6 +78,7 @@ skills: [
       tags: ["Python", "PCA", "Clustering"],
       category: ["Data Science", "Clustering"],
       repo: "https://github.com/sakibzzz641/Customer-Segmentation-Kmeans-dbscan-clustering",
+      repoSlug: "sakibzzz641/Customer-Segmentation-Kmeans-dbscan-clustering",
       liveApp: "https://customer-segmentation-kmeans-dbscan-clustering.streamlit.app/",
       image: "projects/project/customer-segmentation/cover.jpg",
       thumb: "dots"
@@ -89,7 +90,8 @@ skills: [
       description: "Compared 6 models on 7,043 customers. Best result: 0.844 ROC-AUC with 77% recall on likely churners.",
       tags: ["XGBoost", "SMOTE", "Classification"],
       category: ["Data Science", "Classification"],
-      repo: "https://github.com/sakibzzz641/Telco-Customer-Churn-Prediction",   // TODO: churn repo link
+      repo: "https://github.com/sakibzzz641/Telco-Customer-Churn-Prediction",
+      repoSlug: "sakibzzz641/Telco-Customer-Churn-Prediction",
       liveApp: "",
       image: "projects/project/Telco-Customer-Churn-Prediction/cover.jpg",
       thumb: "mix"
@@ -101,7 +103,8 @@ skills: [
       description: "Regression pipeline on 1,337 records. R\u00B2 of 0.85, with SHAP showing smoking status and age drive cost.",
       tags: ["Regression", "SHAP", "Cross-Validation"],
       category: ["Data Science", "Regression"],
-      repo: "https://github.com/sakibzzz641/Insurance-charges-regression",   // TODO: insurance repo link
+      repo: "https://github.com/sakibzzz641/Insurance-charges-regression",
+      repoSlug: "sakibzzz641/Insurance-charges-regression",
       liveApp: "",
       image: "projects/project/Medical-Insurance-Cost-Prediction/cover.jpg",
       thumb: "up"
@@ -113,7 +116,8 @@ skills: [
       description: "Interactive 4-page dashboard on 25,035 retail orders ($12.6M sales, $1.47M profit): products, regions and customers.",
       tags: ["Excel", "Power Query", "DAX", "PivotTable", "Dashboard"],
       category: ["Excel", "Data Analysis", "Dashboard" ],
-      repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",   // TODO: EXCEL-REPO-NAME bodle repo er asol naam dao
+      repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",
+      repoSlug: "sakibzzz641/Global-Superstore-Excel-Dashboard",
       liveApp: "",
       image: "projects/project/Global-Superstore-Sales-Dashboard-Excel/cover.jpg",
       thumb: "mix"
@@ -126,6 +130,7 @@ skills: [
       tags: ["Excel", "Power Query", "PivotTable", "VBA", "Dashboard"],
       category: ["Excel", "Data Analysis", "Dashboard"],
       repo: "https://github.com/sakibzzz641/Supply_Chain_Logistics_Analytics_Dashboard_Excel_and_VBA",
+      repoSlug: "sakibzzz641/Supply_Chain_Logistics_Analytics_Dashboard_Excel_and_VBA",
       liveApp: "",
       image: "projects/project/Supply-Chain-Logistics-Dashboard-Excel/cover.jpg",
       thumb: "mix"
@@ -173,7 +178,7 @@ skills: [
       color: "orange",
       tags: ["Excel", "Power Query", "DAX", "Dashboard"],
       category: ["Excel", "Data Analysis", "Dashboard"],
-      repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",   // TODO: asol repo naam dao
+      repo: "https://github.com/sakibzzz641/Global-Superstore-Excel-Dashboard",
       problem: "Management needed quick answers on sales, profit, products, regions, customers and shipping from 25,035 retail orders (2011-2014).",
       approach: "Cleaned the data with Power Query, modelled it in the Excel Data Model, wrote DAX measures, then built PivotTable dashboards with slicers across 4 pages.",
       result: "Discounts above 20% push profit margin below zero, and Technology leads with 37.5% of total sales."
@@ -196,21 +201,21 @@ skills: [
     {
       title: "Data Science & Machine Learning with Python",
       issuer: "Ostad",
-      details: [["Year", "2026"], ["Covers", "Python, SQL, NumPy, Pandas, Data Analysis, Scikit-learn , XGBoost, EDA, Feature Engineering, Data Visualization , Machine Learning"]],
-      link: "https://ostad.app/share/certificate/c47905-md.-sakib-al-hasan"   // TODO: Ostad certificate link
+      details: [["Year", "2026"], ["Covers", "Python, SQL, NumPy, Pandas, Data Analysis, Scikit-learn, XGBoost, EDA, Feature Engineering, Data Visualization, Machine Learning"]],
+      link: "https://ostad.app/share/certificate/c47905-md.-sakib-al-hasan"
     },
     {
       title: "Computer Basic and ICT Applications",
       issuer: "Dept. of Youth Development, Ministry of Youth and Sports, Govt. of Bangladesh",
       details: [["Period", "Jul\u2013Dec 2024"], ["Grade", "A+"], ["Certificate ID", "141231"], ["Covers", "MS Word, Excel, Access, PowerPoint"]],
-      link: "assets/pdf/computer_basic_and_ ict_application.pdf"   // TODO: ICT certificate link
+      link: "assets/pdf/computer_basic_and_ict_application.pdf"
     },
-   {
-    title: "Business Case Solving",
-    issuer: "10 Minute School",
-    details: [["Issued", "Nov 2, 2026"], ["Certificate ID", "6ae874d564bc5"], ["Covers", "SWOT Analysis, P.E.S.T.E.L, Porter's Five Forces, Case Reading Strategy"]],
-    link: "assets/pdf/business_case_solving.pdf"   // TODO: Business Case Solving certificate link
-   }
+    {
+      title: "Business Case Solving",
+      issuer: "10 Minute School",
+      details: [["Issued", "Nov 2, 2026"], ["Certificate ID", "6ae874d564bc5"], ["Covers", "SWOT Analysis, P.E.S.T.E.L, Porter's Five Forces, Case Reading Strategy"]],
+      link: "assets/pdf/business_case_solving.pdf"
+    }
   ],
 
   // ---------- About ----------

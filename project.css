@@ -62,8 +62,25 @@ img.zoom{display:block;max-width:100%;margin:0 auto 1.2rem;border-radius:10px;bo
 .fbtn{font:inherit;font-size:.82rem;font-weight:500;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--mute);cursor:pointer}.fbtn:hover{border-color:var(--green2);color:var(--ink)}
 .err{color:#b3261e}
 .note{background:var(--ac-bg);border-left:4px solid var(--ac);padding:14px 18px;border-radius:0 8px 8px 0}
-/* more projects */
-#more{padding-bottom:56px}#more h2{font-family:var(--serif);font-size:1.4rem;margin-bottom:14px}
+/* README content */
+.readme{max-width:740px;line-height:1.75}
+.readme h1,.readme h2,.readme h3{font-family:var(--serif);line-height:1.25}
+.readme h2{font-size:1.6rem;margin:2.4rem 0 .8rem}
+.readme h3{font-size:1.2rem;margin:1.8rem 0 .6rem}
+.readme>:first-child{margin-top:0}
+.readme p,.readme ul,.readme ol{margin:0 0 1.1rem}
+.readme ul,.readme ol{padding-left:1.4rem}
+.readme li{margin:.25rem 0}
+.readme a{color:var(--ac);text-decoration:underline;text-underline-offset:3px}
+.readme blockquote{border-left:4px solid var(--ac);background:var(--ac-bg);padding:12px 18px;border-radius:0 8px 8px 0;margin:0 0 1.2rem}
+.readme blockquote p{margin:0}
+.readme code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86em;background:#e6ece9;padding:1px 6px;border-radius:4px}
+.readme pre{background:var(--dark);color:#d7e6e0;border-radius:10px;padding:16px;overflow:auto;font-size:.85rem;line-height:1.55;margin:0 0 1.2rem}
+.readme pre code{background:none;padding:0;color:inherit}
+.readme hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2rem}
+.badges img{height:22px;border-radius:4px}
+
 .mlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
 .mlist a{background:#fff;border:2px solid var(--ac);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}.mlist a b{font-family:var(--serif)}.mlist a span{font-size:.8rem;color:var(--mute)}.mlist a:hover{background:var(--ac-bg)}
 /* lightbox */
