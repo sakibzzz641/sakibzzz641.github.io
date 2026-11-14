@@ -5,6 +5,13 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&am
 const lnk = (h, t, c, x) => h ? '<a class="' + c + '" href="' + esc(h) + '"' + (x ? ' target="_blank" rel="noopener"' : '') + '>' + t + '</a>' : '';
 const D = DATA, P = D.profile, projects = D.projects || [];
 
+// Module-level state shared between init and async callbacks
+const state = {
+  toc: [],
+  seen: {},
+  branch: 'main'
+};
+
 const revealObserver = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   ? null
   : new IntersectionObserver(entries => {
@@ -43,11 +50,16 @@ if (!p) {
   $('#doc').innerHTML = '<h1>Project not found</h1><p>There is no project with the id &ldquo;' + esc(id || '') + '&rdquo;. <a href="index.html#projects">Back to all projects</a>.</p>';
 } else init();
 
-// ── Shared state for current project branch ──────────────────────────
-let _currentBranch = 'main';
-let _toc = [];
+function slugify(s) {
+  return s.toLowerCase().replace(/<[^>]+>/g, '').replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, '') || 'section';
+}
 
 function init() {
+  // Reset state for each project load
+  state.toc = [];
+  state.seen = {};
+  state.branch = 'main';
+
   document.title = p.title + ' | ' + P.name;
   document.body.classList.add('c-' + (p.color || 'green'));
   $('#phead').innerHTML =
@@ -60,14 +72,14 @@ function init() {
     lnk(p.liveApp, 'Live App &#8599;', 'btn line', 1) +
     '</div></div>';
 
-  const seen = {};
-  const slug = s => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, '') || 'section';
+  const localMd = p.page || ('projects/' + p.id + '.md');
 
   marked.use({ renderer: {
     heading(text, level, raw) {
-      const b = slug(raw), n = (seen[b] = (seen[b] || 0) + 1);
+      const b = slugify(raw);
+      const n = (state.seen[b] = (state.seen[b] || 0) + 1);
       const sid = n > 1 ? b + '-' + n : b;
-      if (level === 2 || level === 3) _toc.push({ sid, level, text: raw });
+      if (level === 2 || level === 3) state.toc.push({ sid, level, text: raw });
       return '<h' + level + ' id="' + sid + '">' + text + '</h' + level + '>';
     },
     image(href, title, text) {
@@ -80,7 +92,9 @@ function init() {
         case 'mermaid':    return '<pre class="mermaid">' + esc(c) + '</pre>';
         case 'youtube': {
           const m = c.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/) || c.match(/^([\w-]{11})$/);
-          return m ? '<div class="ratio"><iframe src="https://www.youtube-nocookie.com/embed/' + m[1] + '" title="YouTube video" loading="lazy" allowfullscreen></iframe></div>' : '<p class="err">Invalid YouTube link or id.</p>';
+          return m
+            ? '<div class="ratio"><iframe src="https://www.youtube-nocookie.com/embed/' + m[1] + '" title="YouTube video" loading="lazy" allowfullscreen></iframe></div>'
+            : '<p class="err">Invalid YouTube link or id.</p>';
         }
         case 'video':      return '<video class="vid" controls preload="metadata" src="' + esc(L[0]) + '"' + (L[1] ? ' poster="' + esc(L[1]) + '"' : '') + '></video>';
         case 'gallery':    return '<div class="gal">' + L.filter(Boolean).map(l => {
@@ -94,10 +108,25 @@ function init() {
     }
   }});
 
-  // Try local markdown first, then fall back to GitHub README
-  fetch(p.page || 'projects/' + p.id + '.md')
+  function doRender(content, isReadme) {
+    try {
+      let processed = isReadme ? processReadme(content) : content;
+      $('#doc').innerHTML = marked.parse(processed);
+      $('#doc').classList.add('reveal');
+      buildToc(state.toc);
+      initTables();
+      initMermaid();
+      initLightbox();
+      revealElements();
+    } catch(e) {
+      console.error('renderContent error:', e);
+      showError('render-failed');
+    }
+  }
+
+  fetch(localMd)
     .then(r => { if (!r.ok) throw 0; return r.text(); })
-    .then(md => renderContent(md, false))
+    .then(md => doRender(md, false))
     .catch(() => {
       if (p.repoSlug && p.repo) {
         showLoading('Fetching README from GitHub...');
@@ -105,12 +134,12 @@ function init() {
         fetch(ghApiUrl)
           .then(r => { if (!r.ok) throw 0; return r.json(); })
           .then(info => {
-            _currentBranch = info.default_branch || 'main';
-            const rawUrl = 'https://raw.githubusercontent.com/' + p.repoSlug + '/' + _currentBranch + '/README.md';
+            state.branch = info.default_branch || 'main';
+            const rawUrl = 'https://raw.githubusercontent.com/' + p.repoSlug + '/' + state.branch + '/README.md';
             return fetch(rawUrl);
           })
           .then(r => { if (!r.ok) throw 0; return r.text(); })
-          .then(rawMd => renderContent(rawMd, true))
+          .then(rawMd => doRender(rawMd, true))
           .catch(() => showError('readme-fetch-failed'));
       } else {
         showError('no-content');
@@ -120,47 +149,35 @@ function init() {
 
 function showLoading(msg) {
   $('#toc').remove();
-  $('#doc').innerHTML = '<p class="note">⏳ ' + esc(msg) + '</p>';
+  $('#doc').innerHTML = '<p class="note">&#9203; ' + esc(msg) + '</p>';
 }
 
 function showError(type) {
   $('#toc').remove();
   let msg = '';
   if (type === 'no-content') {
-    msg = 'The full write-up for this project is not available yet. Add <code>projects/' + esc(p.id) + '.md</code> to publish it. If you opened this file straight from disk, run a local server instead (for example <code>python -m http.server</code>), because browsers block file loading from <code>file://</code>.';
+    msg = 'The full write-up for this project is not available yet. Add <code>projects/' + esc(p.id) + '.md</code> to publish it.';
+  } else if (type === 'readme-fetch-failed') {
+    msg = 'Could not load the project write-up from GitHub. <a href="' + esc(p.repo) + '" target="_blank" rel="noopener">View on GitHub</a>.';
   } else {
-    msg = 'Could not load the project write-up. <a href="' + esc(p.repo) + '" target="_blank" rel="noopener">View on GitHub</a>.';
+    msg = 'An unexpected error occurred. Please try again later.';
   }
   $('#doc').innerHTML = '<p class="note">' + msg + '</p>';
 }
 
-// ════════════════════════════════════════════════════════════════════
-//  Render pipeline
-// ════════════════════════════════════════════════════════════════════
-function renderContent(rawMd, isReadme) {
-  const processed = isReadme ? processReadme(rawMd) : rawMd;
-  $('#doc').innerHTML = marked.parse(processed);
-  $('#doc').classList.add('reveal');
-  buildToc(_toc);
-  initTables();
-  initMermaid();
-  initLightbox();
-  revealElements();
-}
-
-// ════════════════════════════════════════════════════════════════════
-//  README processing (GitHub-specific cleanup)
-// ════════════════════════════════════════════════════════════════════
+// ────────────────────────────────────────────────────────────────────
+//  README pre-processing for clean portfolio display
+// ────────────────────────────────────────────────────────────────────
 /**
- * Clean up a GitHub README for portfolio display:
- *  - Removes top-level H1 (already shown in #phead)
- *  - Moves Shields badges into a compact row at top
- *  - Fixes relative image paths → absolute RAW URLs
- *  - Fixes relative anchor links (e.g. [text](./README.md)) → repo links
- *  - Wraps everything in <div class="readme">
+ * Clean up a GitHub README before rendering:
+ *  - Remove top-level H1 (already shown in #phead)
+ *  - Extract Shield badges into a compact row at top
+ *  - Fix relative image paths -> absolute RAW URLs
+ *  - Fix relative anchor links back to the repo
+ *  - Wrap everything in <div class="readme">
  */
 function processReadme(raw) {
-  // Extract Shield badges into their own container
+  // Extract shield badges first
   const shieldRe = /!\[([^\]]*)\]\((https:\/\/img\.shields\.io\/[^)]+)\)/g;
   const shields = [];
   let noShields = raw.replace(shieldRe, (_, alt, url) => {
@@ -168,31 +185,29 @@ function processReadme(raw) {
     return '';
   });
 
-  // Remove top-level H1 (header already shows the project name)
+  // Remove top-level H1 only (first # header at start of doc)
   let body = noShields.replace(/^\n*# +(.+?) *\n+/m, '');
 
-  // Fix relative image paths: ![](relative/path) → absolute RAW URL
-  const ghRawBase = 'https://raw.githubusercontent.com/' + p.repoSlug + '/' + _currentBranch;
+  // Fix relative image paths -> absolute raw URLs
+  const ghRawBase = 'https://raw.githubusercontent.com/' + p.repoSlug + '/' + state.branch;
   body = body.replace(/!\[([^\]]*)\]\((?!https?:\/\/)([^)]+)\)/g, (_, alt, path) => {
     const abs = ghRawBase + '/' + path.replace(/^\//, '');
-    return '![' + esc(alt) + '](' + esc(abs) + ')';
+    return '![#' + esc(alt) + '](' + esc(abs) + ')';
   });
 
-  // Fix relative anchor links ([text](./path.md) etc.) → link to repo/blob
-  body = body.replace(/\[([^\]]*)\]\(\.\/([^)]+)\)/g, '[_ref_$1_$2]');
-  body = body.replace(/_ref_([^\]]*)_([^)]+)/g, (_, txt, link) => {
+  // Fix relative anchor/link paths back to repo
+  body = body.replace(/\[([^\]]*)\]\(\.\/([^)]+)\)/g, (_, txt, link) => {
     if (link.includes('.md')) return '[' + esc(txt) + '](' + esc(p.repo) + ')';
     return '[' + esc(txt) + '](' + esc(p.repo + '/blob/main/' + link) + ')';
   });
 
-  // Wrap in .readme wrapper, prepend badge row if any
   const badgeHtml = shields.length ? '<div class="badges">' + shields.join('') + '</div>\n\n' : '';
   return '<div class="readme">' + badgeHtml + body + '</div>';
 }
 
-// ════════════════════════════════════════════════════════════════════
+// ────────────────────────────────────────────────────────────────────
 //  Table of contents
-// ════════════════════════════════════════════════════════════════════
+// ────────────────────────────────────────────────────────────────────
 function buildToc(toc) {
   if (toc.length < 2) { $('#toc').remove(); return; }
   $('#toc').innerHTML =
@@ -211,9 +226,9 @@ function buildToc(toc) {
   toc.forEach(t => io.observe(document.getElementById(t.sid)));
 }
 
-// ════════════════════════════════════════════════════════════════════
+// ────────────────────────────────────────────────────────────────────
 //  Mermaid diagrams
-// ════════════════════════════════════════════════════════════════════
+// ────────────────────────────────────────────────────────────────────
 function initMermaid() {
   if (!document.querySelector('.mermaid')) return;
   const s = document.createElement('script');
@@ -222,9 +237,9 @@ function initMermaid() {
   document.head.appendChild(s);
 }
 
-// ════════════════════════════════════════════════════════════════════
+// ────────────────────────────────────────────────────────────────────
 //  Sortable + searchable CSV tables
-// ════════════════════════════════════════════════════════════════════
+// ────────────────────────────────────────────────────────────────────
 function csv(t) {
   const r = [];
   let row = [], f = '', q = false;
@@ -283,9 +298,9 @@ function dtable(el, rows) {
   draw();
 }
 
-// ════════════════════════════════════════════════════════════════════
+// ────────────────────────────────────────────────────────────────────
 //  Click-to-zoom lightbox
-// ════════════════════════════════════════════════════════════════════
+// ────────────────────────────────────────────────────────────────────
 function initLightbox() {
   const lb = $('#lb'), img = $('#lbImg'), cap = $('#lbCap');
   const list = () => [...document.querySelectorAll('img.zoom')];
