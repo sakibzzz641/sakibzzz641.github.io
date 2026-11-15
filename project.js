@@ -21,7 +21,7 @@ const revealObserver = window.matchMedia('(prefers-reduced-motion: reduce)').mat
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: .12, rootMargin: '0px 0px -40px' });
+    }, { threshold: 0, rootMargin: '0px 0px -40px' });
 
 function revealElements() {
   document.querySelectorAll('.reveal').forEach(el => {
@@ -46,7 +46,7 @@ if (others.length) $('#more').innerHTML =
 
 if (!p) {
   document.title = 'Project not found | ' + P.name;
-  $('#phead').remove(); $('#toc').remove();
+  $('#phead').remove(); removeToc();
   $('#doc').innerHTML = '<h1>Project not found</h1><p>There is no project with the id &ldquo;' + esc(id || '') + '&rdquo;. <a href="index.html#projects">Back to all projects</a>.</p>';
 } else init();
 
@@ -63,7 +63,7 @@ function init() {
   document.title = p.title + ' | ' + P.name;
   document.body.classList.add('c-' + (p.color || 'green'));
   $('#phead').innerHTML =
-    '<div class="wrap reveal">' +
+    '<div class="wrap">' +
     [...(p.category || []), ...(p.tags || [])].map(t => '<span class="pill">' + esc(t) + '</span>').join('') +
     '<h1>' + esc(p.title) + '</h1>' +
     '<p class="lead">' + esc(p.description) + '</p>' +
@@ -109,19 +109,21 @@ function init() {
   }});
 
   function doRender(content, isReadme) {
+    // Each step is isolated: one failing step must not blank the page
+    const step = (name, fn) => { try { fn(); } catch (e) { console.error('[project.js] ' + name + ' failed:', e); } };
     try {
-      let processed = isReadme ? processReadme(content) : content;
+      const processed = isReadme ? processReadme(content) : content;
       $('#doc').innerHTML = marked.parse(processed);
-      $('#doc').classList.add('reveal');
-      buildToc(state.toc);
-      initTables();
-      initMermaid();
-      initLightbox();
-      revealElements();
-    } catch(e) {
+    } catch (e) {
       console.error('renderContent error:', e);
       showError('render-failed');
+      return;
     }
+    step('buildToc', () => buildToc(state.toc));
+    step('initTables', initTables);
+    step('initMermaid', initMermaid);
+    step('initLightbox', initLightbox);
+    step('revealElements', revealElements);
   }
 
   fetch(localMd)
@@ -147,13 +149,15 @@ function init() {
     });
 }
 
+function removeToc() { const t = $('#toc'); if (t) t.remove(); }
+
 function showLoading(msg) {
-  $('#toc').remove();
+  removeToc();
   $('#doc').innerHTML = '<p class="note">&#9203; ' + esc(msg) + '</p>';
 }
 
 function showError(type) {
-  $('#toc').remove();
+  removeToc();
   let msg = '';
   if (type === 'no-content') {
     msg = 'The full write-up for this project is not available yet. Add <code>projects/' + esc(p.id) + '.md</code> to publish it.';
@@ -177,16 +181,18 @@ function showError(type) {
  *  - Wrap everything in <div class="readme">
  */
 function processReadme(raw) {
-  // Extract shield badges first
-  const shieldRe = /!\[([^\]]*)\]\((https:\/\/img\.shields\.io\/[^)]+)\)/g;
-  const shields = [];
-  let noShields = raw.replace(shieldRe, (_, alt, url) => {
-    shields.push('<img src="' + esc(url) + '" alt="' + esc(alt) + '">');
-    return '';
-  });
+  // Remove ALL badges (shields.io etc.), linked or not, markdown or HTML
+  const H = 'https?:\\/\\/(?:img\\.shields\\.io|badgen\\.net|forthebadge\\.com|badge\\.fury\\.io|api\\.visitorbadge\\.io|hits\\.seeyoufarm\\.com|komarev\\.com)[^)\\s"\']*';
+  const noBadges = raw
+    .replace(new RegExp('\\[\\s*!\\[[^\\]]*\\]\\(\\s*' + H + '[^)]*\\)\\s*\\]\\([^)]*\\)', 'gi'), '')
+    .replace(new RegExp('!\\[[^\\]]*\\]\\(\\s*' + H + '[^)]*\\)', 'gi'), '')
+    .replace(new RegExp('<a\\b[^>]*>\\s*<img\\b[^>]*src=["\']' + H + '["\'][^>]*>\\s*</a>', 'gi'), '')
+    .replace(new RegExp('<img\\b[^>]*src=["\']' + H + '["\'][^>]*>', 'gi'), '')
+    .replace(/^[ \t]*$/gm, '')
+    .replace(/\n{3,}/g, '\n\n');
 
   // Remove top-level H1 only (first # header at start of doc)
-  let body = noShields.replace(/^\n*# +(.+?) *\n+/m, '');
+  let body = noBadges.replace(/^\n*# +(.+?) *\n+/m, '');
 
   // Fix relative image paths -> absolute raw URLs
   const ghRawBase = 'https://raw.githubusercontent.com/' + p.repoSlug + '/' + state.branch;
@@ -201,15 +207,14 @@ function processReadme(raw) {
     return '[' + esc(txt) + '](' + esc(p.repo + '/blob/main/' + link) + ')';
   });
 
-  const badgeHtml = shields.length ? '<div class="badges">' + shields.join('') + '</div>\n\n' : '';
-  return '<div class="readme">' + badgeHtml + body + '</div>';
+  return '<div class="readme">\n\n' + body + '\n\n</div>';
 }
 
 // ────────────────────────────────────────────────────────────────────
 //  Table of contents
 // ────────────────────────────────────────────────────────────────────
 function buildToc(toc) {
-  if (toc.length < 2) { $('#toc').remove(); return; }
+  if (toc.length < 2) { removeToc(); return; }
   $('#toc').innerHTML =
     '<b>On this page</b>' + toc.map(t =>
       '<a class="l' + t.level + '" href="#' + t.sid + '">' + esc(t.text) + '</a>'
@@ -223,7 +228,7 @@ function buildToc(toc) {
       }
     });
   }, { rootMargin: '-80px 0px -70% 0px' });
-  toc.forEach(t => io.observe(document.getElementById(t.sid)));
+  toc.forEach(t => { const el = document.getElementById(t.sid); if (el) io.observe(el); });
 }
 
 // ────────────────────────────────────────────────────────────────────
@@ -313,9 +318,15 @@ function initLightbox() {
     document.body.style.overflow = 'hidden';
   };
   const hide = () => { lb.hidden = true; document.body.style.overflow = ''; };
+  // README images are often wrapped in a link ([![alt](img)](url)) and raw <img> tags
+  // have no .zoom class, so make every image in the doc zoomable
+  document.querySelectorAll('#doc img:not(.zoom)').forEach(im => im.classList.add('zoom'));
   $('#doc').addEventListener('click', e => {
     const t = e.target.closest('img.zoom');
-    if (t) show(list().indexOf(t));
+    if (!t) return;
+    e.preventDefault();   // stop the wrapping <a> from navigating to GitHub
+    e.stopPropagation();
+    show(list().indexOf(t));
   });
   lb.addEventListener('click', e => {
     if (e.target.closest('.x') || e.target === lb) hide();
