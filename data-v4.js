@@ -28,7 +28,7 @@ const DATA = {
   // ---------- Hero tags ----------
   heroTags: {
     top: ["Data Analysis", "Data Science", "Machine Learning", "Python", "SQL", "Excel", "Pandas", "NumPy"],
-    bottom: ["Data Analyst", "Data Scientist", "Scikit-learn", "XGBoost", "EDA", "Power Query & DAX", "Data Visualization"]
+    bottom: ["Data Analyst", "Data Scientist", "Scikit-learn", "XGBoost", "EDA", "Data Visualization"]
   },
 
   // ---------- Skills ----------
@@ -85,7 +85,6 @@ skills: [
     { mark: "S", name: "Seaborn" },
     { mark: "GH", name: "GitHub" },
     { mark: "J", name: "Jupyter" },
-    { mark: "DAX", name: "Power Query & DAX" }
   ],
 
   // ---------- Featured Projects ----------
