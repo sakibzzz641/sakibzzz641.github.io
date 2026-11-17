@@ -63,7 +63,8 @@ h2::before{content:"";display:block;width:34px;height:3px;background:var(--green
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .skill{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 12px;text-align:center;font-size:.9rem;font-weight:500}
 .skill b{display:grid;place-items:center;width:38px;height:38px;border-radius:9px;background:#e4f1ec;color:var(--green);margin:0 auto 10px;font-size:.78rem}
-.groups{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.sg{--skill-accent:var(--green);--skill-soft:#e4f1ec;--skill-border:#b7d8ca;position:relative;overflow:hidden;background:var(--card);border:2px solid var(--skill-border);border-radius:14px;padding:22px;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}.sg::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--skill-accent)}.sg:hover{transform:translateY(-5px);border-color:var(--skill-accent);box-shadow:0 16px 32px rgba(15,31,29,.12);z-index:1}.sg h3{font-family:var(--serif);font-size:1.12rem;display:flex;align-items:center;gap:11px;margin-bottom:18px}.sg h3 b{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--skill-soft);color:var(--skill-accent);font-family:var(--sans);font-size:.72rem}.sg-items{display:grid;gap:14px}.skill-subgroup{padding-top:12px;border-top:1px solid var(--skill-border)}.skill-subgroup:first-child{padding-top:0;border-top:0}.sg .sl{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--skill-accent);margin:0 0 8px}.sg .tags{gap:7px}.sg .tags em{font-size:.74rem;background:var(--skill-soft);border:1px solid var(--skill-border);border-radius:999px;padding:4px 9px;color:var(--skill-accent)}.sg .tags em:hover{border-color:var(--skill-accent);background:var(--skill-accent);color:#fff}
+.tool-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:0 0 34px}.tool-card{min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;background:var(--card);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-align:center;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}.tool-card:hover{transform:translateY(-4px);border-color:var(--green2);box-shadow:0 10px 24px rgba(15,31,29,.1)}.tool-mark{display:grid;place-items:center;min-width:30px;height:30px;padding:0 5px;border-radius:8px;background:#e4f1ec;color:var(--green);font-size:.66rem;font-weight:700}.tool-logo{width:30px;height:30px;padding:4px;border-radius:8px;background:#e4f1ec;object-fit:contain}.tool-icon{width:30px;height:30px;padding:6px;border-radius:8px;background:#e4f1ec;color:var(--green);fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.tool-icon text{fill:currentColor;stroke:none;font-family:var(--sans);font-size:8px;font-weight:700}.tool-card span:last-child{font-size:.72rem;font-weight:600;color:var(--mute)}
+.groups{display:grid;grid-template-columns:repeat(3,1fr);align-items:stretch;gap:18px}.sg{--skill-accent:var(--green);--skill-soft:#e4f1ec;--skill-border:#b7d8ca;position:relative;overflow:hidden;height:100%;min-height:270px;background:var(--card);border:2px solid var(--skill-border);border-radius:14px;padding:20px;display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}.sg::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--skill-accent)}.sg:hover{transform:translateY(-5px);border-color:var(--skill-accent);box-shadow:0 16px 32px rgba(15,31,29,.12);z-index:1}.sg h3{font-family:var(--serif);font-size:1.12rem;display:flex;align-items:center;margin-bottom:12px}.sg-description{color:var(--mute);font-size:.84rem;line-height:1.65;margin-bottom:18px}.sg-items{margin-top:auto}.skill-subgroup{padding-top:0}.sg .sl{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--skill-accent);margin:0 0 8px}.sg .tags{gap:7px}.sg .tags em{display:inline-flex;align-items:center;font-size:.74rem;background:var(--skill-soft);border:1px solid var(--skill-border);border-radius:6px;padding:5px 9px;color:var(--skill-accent)}.sg .tags em:hover{border-color:var(--skill-accent);background:var(--skill-accent);color:#fff}
 .proj .tags em,.case .tags em{border:1.5px solid #1f7a5c;background:#e4f1ec;color:#145a43;font-weight:500}.proj .tags em:nth-child(2),.case .tags em:nth-child(2){border-color:#d2762f;background:#fbeee3;color:#9a4f12}.proj .tags em:nth-child(3),.case .tags em:nth-child(3){border-color:#3a74b8;background:#e5eff9;color:#244f82}.proj .tags em:nth-child(4),.case .tags em:nth-child(4){border-color:#7d52b3;background:#efe8f8;color:#55307f}.case .tags{margin-top:10px}
 .certs{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.cert{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform .22s ease,box-shadow .22s ease}.cert:hover{transform:translateY(-4px) scale(1.025);box-shadow:0 14px 30px rgba(15,31,29,.14);position:relative;z-index:1}.cert h3{font-family:var(--serif);font-size:1.15rem}.cert .by{color:var(--mute);font-size:.9rem;margin-top:-6px}.cert dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:.88rem}.cert dt{color:var(--mute)}.cert dd{font-weight:500}.cert .btn{align-self:flex-start;margin-top:auto;padding:8px 18px}
 .projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px}
@@ -84,7 +85,9 @@ h2::before{content:"";display:block;width:34px;height:3px;background:var(--green
 .case h3{font-family:var(--serif);font-size:1.15rem}
 .case h4{font-size:.85rem;color:var(--green);margin-bottom:4px}
 .case p{font-size:.88rem;color:var(--mute)}
-.about{display:grid;grid-template-columns:1fr;max-width:760px}
+.about{display:grid;grid-template-columns:1fr;max-width:760px;text-align:center}
+.about h2::before{margin-left:auto;margin-right:auto}
+.about .sub,.about p{margin-left:auto;margin-right:auto}
 .about p{color:var(--mute);margin-bottom:14px}
 .edu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:16px}
 .edu div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
@@ -112,6 +115,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
  .hero h1{font-size:clamp(1.6rem,8vw,3.2rem)}
  .hero .wrap,.about{grid-template-columns:1fr}
  .photo{max-width:320px}
+ .tool-grid{grid-template-columns:repeat(3,1fr)}
  .groups{grid-template-columns:1fr}
  .projects{grid-template-columns:repeat(2,minmax(0,1fr))}
  .certs{grid-template-columns:1fr}
@@ -131,6 +135,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
  .hero p.lead{font-size:.92rem}
  .photo{max-width:260px}
  .projects{grid-template-columns:1fr}
+ .tool-grid{grid-template-columns:repeat(2,1fr)}
  .edu{grid-template-columns:1fr}
  .proj .body{padding:16px}
  .proj .links{gap:8px}
@@ -237,6 +242,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
  <div class="wrap">
   <h2>Skills &amp; Tools</h2>
   <p class="sub">Tools and technologies I use to analyze data and build models.</p>
+  <div class="tool-grid" id="toolList"></div>
   <div class="groups reveal-stagger" id="skillGroups"></div>
  </div>
 </section>
@@ -293,6 +299,36 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const tags=a=>'<div class="tags">'+(a||[]).map(t=>'<em>'+esc(t)+'</em>').join('')+'</div>';
+const skillTags=a=>tags(a);
+const toolIcon=name=>{
+ const icons={
+  Python:'<circle cx="8" cy="8" r="3"/><circle cx="16" cy="16" r="3"/><path d="M10 8h4a2 2 0 0 1 2 2v3M14 16h-4a2 2 0 0 1-2-2v-3"/>',
+  SQL:'<path d="M5 6c0-2 14-2 14 0v12c0 2-14 2-14 0z"/><path d="M5 6c0 2 14 2 14 0M5 12c0 2 14 2 14 0"/>',
+  Excel:'<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 4v16M15 4v16"/>',
+  Pandas:'<text x="4" y="15">pd</text>',
+  NumPy:'<path d="m6 5 4 14 4-14M4 8h4M16 8h4"/>',
+  'Scikit-learn':'<circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="m8 11 8-4M8 13l8 4"/>',
+  XGBoost:'<path d="M5 19V9M10 19V5M15 19v-8M20 19V3"/>',
+  Matplotlib:'<path d="M4 18 9 12l3 3 7-9"/><path d="M4 20h16"/>',
+  Seaborn:'<path d="M4 15c3-8 5 8 8 0s5 8 8 0"/>',
+  GitHub:'<circle cx="12" cy="12" r="8"/><path d="M9 18v-3a3 3 0 0 1 6 0v3M8 9a5 5 0 0 0 8 0"/>',
+  Jupyter:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/><path d="M7 5h.01M17 19h.01"/>',
+  'Power Query & DAX':'<path d="M5 19V9M10 19V5M15 19v-8M20 19V3"/>'
+ };
+ return '<svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">'+(icons[name]||'')+'</svg>';
+};
+const toolAssets={
+ Python:'python.svg',
+ SQL:'sql.svg',
+ Excel:'excel.svg',
+ Pandas:'pandas.svg',
+ NumPy:'numpy.svg',
+ 'Scikit-learn':'scikit-learn.svg',
+ Matplotlib:'matplotlib.svg',
+ Seaborn:'seaborn.svg',
+ GitHub:'github.svg',
+ Jupyter:'jupyter.svg'
+};
 const lnk=(href,txt,cls,ext)=>href?'<a class="'+cls+'" href="'+esc(href)+'"'+(ext?' target="_blank" rel="noopener"':'')+'>'+txt+'</a>':'';
 const ICON={
 github:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>',
@@ -332,8 +368,9 @@ $('#social').innerHTML=['github','linkedin','kaggle','email'].filter(k=>S[k]).ma
 $('#photo').innerHTML='<div class="img">'+esc(P.initials||'')+(P.photo?'<img src="'+esc(P.photo)+'" alt="'+esc(P.name)+'" onerror="this.remove()">':'')+'</div>'+lnk(S.linkedin,'Connect on LinkedIn','',true);
 
 // skills
-$('#skillGroups').innerHTML=D.skills.map(g=>'<div class="sg"><h3><b>'+esc(g.icon)+'</b><span>'+esc(g.title)+'</span></h3>'+
- (g.subgroups?'<div class="sg-items">'+g.subgroups.map(s=>'<div class="skill-subgroup"><p class="sl">'+esc(s.title)+'</p>'+tags(s.items)+'</div>').join('')+'</div>':'<div class="sg-items"><div class="skill-subgroup">'+tags(g.items)+'</div></div>')+'</div>').join('');
+$('#toolList').innerHTML=(D.tools||[]).map(t=>'<div class="tool-card">'+(toolAssets[t.name]?'<img class="tool-logo" src="assets/icons/'+toolAssets[t.name]+'" alt="'+esc(t.name)+' logo">':toolIcon(t.name))+'<span>'+esc(t.name)+'</span></div>').join('');
+$('#skillGroups').innerHTML=D.skills.map(g=>'<div class="sg"><h3>'+esc(g.title)+'</h3>'+
+ '<p class="sg-description">'+esc(g.description||'')+'</p><div class="sg-items">'+skillTags(g.items)+'</div></div>').join('');
 
 // projects
 const FB={
