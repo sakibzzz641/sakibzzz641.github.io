@@ -40,7 +40,8 @@ nav ul a.active::after{transform:scaleX(1)}
 .hero-main{display:grid;grid-template-columns:1.35fr 1fr;gap:48px;align-items:start}
 .pill{display:inline-block;border:1px solid #2f4540;border-radius:999px;padding:3px 12px;font-size:.74rem;color:#cdd9d4;margin:0 6px 8px 0}
 .hi{color:var(--orange);margin-top:22px;font-size:1.1rem}
-.hero h1{font-family:var(--serif);font-size:clamp(1.6rem,5.2vw,3.4rem);line-height:1.1;margin:4px 0 18px;white-space:nowrap}
+.hero h1{font-family:var(--serif);font-size:clamp(1.6rem,5.2vw,3.4rem);line-height:1.1;margin:4px 0 10px;white-space:nowrap}
+.hero-role{color:#8fd0b6;font-size:.92rem;font-weight:600;letter-spacing:.02em;margin-bottom:18px}
 .hero p.lead{color:#b9c7c2;max-width:480px;margin:18px 0 26px}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
 .social{display:flex;gap:12px;margin-top:30px;padding-top:24px;border-top:1px solid #243733;max-width:420px}
@@ -232,6 +233,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
    <div>
     <p class="hi">Hi, I'm</p>
     <h1 id="heroName"></h1>
+    <p class="hero-role" id="heroRole"></p>
     <p class="lead" id="heroLead"></p>
     <div class="cta">
      <a class="btn fill" href="#projects" id="heroProjects">View My Projects</a>
@@ -383,6 +385,7 @@ function revealElements(){
 // header, hero
 $('#logoMark').innerHTML=esc(P.initials||'')+(P.photo?'<img src="'+esc(P.photo)+'" alt="" onerror="this.remove()">':''); $('#logoName').textContent=P.shortName||P.name;
 $('#heroName').textContent=P.name; $('#heroLead').textContent=P.tagline;
+$('#heroRole').textContent=P.role||'';
 ['#navCv','#heroCv'].forEach(id=>{if(P.cv){$(id).href=P.cv;$(id).hidden=false}});
 const socialNames={github:'GitHub',linkedin:'LinkedIn',kaggle:'Kaggle',email:'Email'};
 $('#social').innerHTML=['github','linkedin','kaggle','email'].filter(k=>S[k]).map(k=>
