@@ -52,11 +52,17 @@ nav ul a.active::after{transform:scaleX(1)}
 .photo .img{position:relative}.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .photo a{display:block;text-align:center;margin-top:10px;font-size:.8rem;border:1px solid #2f4540;border-radius:8px;padding:7px;color:#cdd9d4}
 .photo a:hover{border-color:var(--green2)}
-.hero .tool-grid{margin-top:34px;background:#152623;border-color:#2f4540;box-shadow:none}
-.hero .tool-card:hover{background:#1b3a32}
-.hero .tool-card span:last-child{color:#cdd9d4}
-.hero-main .tool-grid{margin-top:24px;padding:12px 6px;flex-wrap:wrap;overflow:visible;justify-content:flex-start}
-.hero-main .tool-card{flex:0 0 76px;min-height:64px}
+.hero .social{margin:0 0 0 2px;padding:0 0 0 22px;border-top:0;border-left:1px solid #243733;gap:18px;align-items:center}
+.hero .social a{min-width:auto;height:auto;padding:0;border:0;border-radius:0;font-size:0;color:#b9c7c2}
+.hero .social a:hover{background:none;border:0;color:#fff;transform:none}
+.hero .social svg{width:20px;height:20px}
+.hero .cta #heroCv{border:0;padding:10px 0;text-decoration:underline;text-underline-offset:4px}
+.hero .cta #heroCv::before{content:'\2193';display:inline-block;margin-right:8px;font-size:1.05rem;text-decoration:none}
+.hero-tools{margin-top:34px}
+.hero-tools-label{display:block;color:#89a39a;font-size:.7rem;letter-spacing:.16em;font-weight:600;margin-bottom:10px}
+.hero-tools-list{display:flex;flex-wrap:wrap;max-width:620px;gap:0;color:#cdd9d4;font-size:.82rem;font-weight:500;line-height:1.8}
+.hero-tools-list .tool-break{flex-basis:100%;height:0}
+.hero-tools-list span:not(:last-child)::after{content:'\00a0\00b7\00a0';color:#6e8d82}
 /* sections */
 section{padding:72px 0}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
@@ -153,7 +159,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
  h2{font-size:1.7rem}
  .sub{font-size:.9rem;margin-bottom:24px}
  .cta .btn{width:100%;text-align:center}
- .social{margin-top:24px;padding-top:18px}
+ .hero .social{margin-left:0;padding-left:14px;gap:12px}
  nav{height:58px}
  header nav ul{top:58px}
  .logo{font-size:.92rem}
@@ -230,9 +236,12 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
     <div class="cta">
      <a class="btn fill" href="#projects" id="heroProjects">View My Projects</a>
      <a class="btn line" id="heroCv" download hidden>Download CV</a>
+     <div class="social" id="social"></div>
     </div>
-    <div class="social" id="social"></div>
-    <div class="tool-grid reveal-stagger" id="toolList"></div>
+    <div class="hero-tools">
+     <span class="hero-tools-label">TOOLS I USE</span>
+     <div class="hero-tools-list" id="heroTools"></div>
+    </div>
    </div>
    <div class="photo" id="photo"></div>
   </div>
@@ -253,6 +262,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
  <div class="wrap">
   <h2>Skills &amp; Tools</h2>
   <p class="sub">Tools and technologies I use to analyze data and build models.</p>
+  <div class="tool-grid reveal-stagger" id="toolList"></div>
   <div class="groups reveal-stagger" id="skillGroups"></div>
  </div>
 </section>
@@ -380,6 +390,7 @@ $('#social').innerHTML=['github','linkedin','kaggle','email'].filter(k=>S[k]).ma
 $('#photo').innerHTML='<div class="img">'+esc(P.initials||'')+(P.photo?'<img src="'+esc(P.photo)+'" alt="'+esc(P.name)+'" onerror="this.remove()">':'')+'</div>';
 
 // skills
+$('#heroTools').innerHTML=(D.tools||[]).map((t,index)=>(index===8?'<span class="tool-break" aria-hidden="true"></span>':'')+'<span>'+esc(t.name)+'</span>').join('');
 $('#toolList').innerHTML=(D.tools||[]).map(t=>'<div class="tool-card">'+(toolAssets[t.name]?'<img class="tool-logo" src="assets/icons/'+toolAssets[t.name]+'" alt="'+esc(t.name)+' logo">':toolIcon(t.name))+'<span>'+esc(t.name)+'</span></div>').join('');
 $('#skillGroups').innerHTML=D.skills.map(g=>'<div class="sg"><h3>'+esc(g.title)+'</h3>'+
  '<p class="sg-description">'+esc(g.description||'')+'</p><div class="sg-items">'+skillTags(g.items)+'</div></div>').join('');
