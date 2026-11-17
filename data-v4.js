@@ -69,7 +69,7 @@ skills: [
     icon: "WF",
     title: "Workflow & Evaluation",
     description: "Build reproducible workflows and measure model performance.",
-    items: ["Feature Engineering", "Pipelines", "Cross-Validation", "ROC-AUC", "RMSE", "Git", "GitHub", "Jupyter Notebook"]
+    items: ["Feature Engineering", "Pipelines", "Cross-Validation", "ROC-AUC", "RMSE", "Git", "GitHub", "Jupyter Notebook", "AI-Assisted Development"]
   }
 ],
 
