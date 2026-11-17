@@ -40,7 +40,8 @@ nav ul a.active::after{transform:scaleX(1)}
 .hero-main{display:grid;grid-template-columns:1.35fr 1fr;gap:48px;align-items:start}
 .pill{display:inline-block;border:1px solid #2f4540;border-radius:999px;padding:3px 12px;font-size:.74rem;color:#cdd9d4;margin:0 6px 8px 0}
 .hi{color:var(--orange);margin-top:22px;font-size:1.1rem}
-.hero h1{font-family:var(--serif);font-size:clamp(1.6rem,5.2vw,3.4rem);line-height:1.1;margin:4px 0 18px;white-space:nowrap}
+.hero h1{font-family:var(--serif);font-size:clamp(1.6rem,5.2vw,3.4rem);line-height:1.1;margin:4px 0 10px;white-space:nowrap}
+.hero-role{color:#8fd0b6;font-size:.92rem;font-weight:600;letter-spacing:.02em;margin-bottom:18px}
 .hero p.lead{color:#b9c7c2;max-width:480px;margin:18px 0 26px}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
 .social{display:flex;gap:12px;margin-top:30px;padding-top:24px;border-top:1px solid #243733;max-width:420px}
@@ -121,13 +122,18 @@ h2::before{content:"";display:block;width:34px;height:3px;background:var(--green
 .contact-card .cta{justify-content:center;margin-top:20px}
 .copy-status{display:block;min-height:1.4em;margin-top:12px;color:var(--green);font-size:.8rem}
 footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-size:.82rem}
+@media(max-width:1100px){
+ nav ul{gap:12px}
+ .hero-main{gap:32px}
+}
 @media(max-width:860px){
  .wrap{padding-left:20px;padding-right:20px}
  nav ul{gap:16px}
  .hero{padding:56px 0}
  .hero h1{font-size:clamp(1.6rem,8vw,3.2rem)}
  .hero-main,.about{grid-template-columns:1fr}
- .photo{max-width:320px}
+ .photo{max-width:320px;justify-self:center;margin-left:auto;margin-right:auto}
+ .hero-tools-list{max-width:100%}
  .tool-grid{flex-wrap:wrap;overflow-x:visible}
  .tool-card{flex-basis:120px}
  .groups{grid-template-columns:1fr}
@@ -159,7 +165,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
  h2{font-size:1.7rem}
  .sub{font-size:.9rem;margin-bottom:24px}
  .cta .btn{width:100%;text-align:center}
- .hero .social{margin-left:0;padding-left:14px;gap:12px}
+ .hero .social{margin-left:0;padding-left:0;border-left:0;gap:12px}
  nav{height:58px}
  header nav ul{top:58px}
  .logo{font-size:.92rem}
@@ -232,6 +238,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
    <div>
     <p class="hi">Hi, I'm</p>
     <h1 id="heroName"></h1>
+    <p class="hero-role" id="heroRole"></p>
     <p class="lead" id="heroLead"></p>
     <div class="cta">
      <a class="btn fill" href="#projects" id="heroProjects">View My Projects</a>
@@ -383,6 +390,7 @@ function revealElements(){
 // header, hero
 $('#logoMark').innerHTML=esc(P.initials||'')+(P.photo?'<img src="'+esc(P.photo)+'" alt="" onerror="this.remove()">':''); $('#logoName').textContent=P.shortName||P.name;
 $('#heroName').textContent=P.name; $('#heroLead').textContent=P.tagline;
+$('#heroRole').textContent=P.role||'';
 ['#navCv','#heroCv'].forEach(id=>{if(P.cv){$(id).href=P.cv;$(id).hidden=false}});
 const socialNames={github:'GitHub',linkedin:'LinkedIn',kaggle:'Kaggle',email:'Email'};
 $('#social').innerHTML=['github','linkedin','kaggle','email'].filter(k=>S[k]).map(k=>

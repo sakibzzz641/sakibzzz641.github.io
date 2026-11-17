@@ -11,6 +11,7 @@ const DATA = {
   profile: {
     name: "Md. Sakib Al Hasan",
     shortName: "Sakib Al Hasan",          // nav bar e dekhabe
+    role: "Data Analyst & Data Scientist",
     initials: "SH",                        // photo na thakle eta dekhabe
     tagline: "I turn raw data into clear insights, dashboards and useful predictions. Explore my projects and case studies to see how I solve real-world problems with Python, SQL, Excel and machine learning.",
     photo: "assets/img/photo.png",         // photo upload korle auto boshbe
