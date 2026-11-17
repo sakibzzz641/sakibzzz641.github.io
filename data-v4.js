@@ -220,14 +220,15 @@ skills: [
 
   // ---------- About ----------
   about: {
-    subtitle: "Data Analyst and Data Scientist from Narsingdi, Bangladesh.",
+    subtitle: "A Mathematics student who turns complex data into practical business insight.",
     paragraphs: [
-      "I am a Mathematics (Hons) student with hands-on experience in Python, SQL, Excel, data analysis, machine learning and data visualization. I build end-to-end projects: data cleaning, EDA, feature engineering, modeling, evaluation and dashboards.",
-      "I am seeking a challenging Data Analyst or Data Scientist role where I can turn data into clear, actionable decisions."
+      "I am Md. Sakib Al Hasan, a Data Analyst and Data Scientist from Narsingdi, Bangladesh. Alongside my B.Sc. (Hons) in Mathematics, I have built hands-on experience with Python, SQL, Excel, data analysis, machine learning and data visualization.",
+      "My work covers the full analytics workflow: cleaning raw data, exploring patterns, engineering useful features, building and evaluating models, and presenting findings through clear dashboards. Recent projects include customer segmentation, churn prediction, insurance cost modeling and interactive Excel dashboards.",
+      "I enjoy turning numbers into decisions that people can act on, and I am open to opportunities where I can contribute as a Data Analyst or Data Scientist while continuing to grow."
     ],
     education: [
-      { title: "B.Sc. (Hons) in Mathematics", note: "Govt. Shahid Asad College, Shibpur, Narsingdi. 4th year, expected 2027." },
-      { title: "HSC (Science), GPA 4.42/5.00", note: "Narsingdi Public College, 2021." }
+      { title: "B.Sc. (Hons) in Mathematics", note: "National University · Govt. Shahid Asad College, Shibpur, Narsingdi · 4th year · Expected 2027" },
+      { title: "Higher Secondary Certificate (HSC) - Science", note: "Narsingdi Public College, 2021." }
     ]
   },
 

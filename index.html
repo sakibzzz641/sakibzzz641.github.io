@@ -84,9 +84,9 @@ h2::before{content:"";display:block;width:34px;height:3px;background:var(--green
 .case h3{font-family:var(--serif);font-size:1.15rem}
 .case h4{font-size:.85rem;color:var(--green);margin-bottom:4px}
 .case p{font-size:.88rem;color:var(--mute)}
-.about{display:grid;grid-template-columns:1.2fr 1fr;gap:48px}
+.about{display:grid;grid-template-columns:1fr;max-width:760px}
 .about p{color:var(--mute);margin-bottom:14px}
-.edu{display:grid;gap:12px}
+.edu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:16px}
 .edu div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
 .edu strong{display:block;font-family:var(--serif)}
 .edu small{color:var(--mute)}
@@ -131,6 +131,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
  .hero p.lead{font-size:.92rem}
  .photo{max-width:260px}
  .projects{grid-template-columns:1fr}
+ .edu{grid-template-columns:1fr}
  .proj .body{padding:16px}
  .proj .links{gap:8px}
  .proj .links a.more{padding:7px 10px;font-size:.74rem}
@@ -196,6 +197,7 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
     <li data-sec="projects"><a href="#projects">Projects</a></li>
     <li data-sec="cases"><a href="#cases">Case Studies</a></li>
     <li data-sec="certs"><a href="#certs">Certifications</a></li>
+    <li data-sec="education"><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
    </ul>
    <a class="btn line" id="navCv" download hidden>Download CV</a>
@@ -220,6 +222,16 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
   <div class="photo" id="photo"></div>
  </div>
 </div>
+
+<section id="about" class="alt">
+ <div class="wrap about">
+  <div>
+   <h2>About Me</h2>
+   <p class="sub" id="aboutSub" style="margin-bottom:14px"></p>
+   <div class="reveal" id="aboutText"></div>
+  </div>
+ </div>
+</section>
 
 <section id="skills">
  <div class="wrap">
@@ -255,14 +267,11 @@ footer{background:var(--dark);color:#9fb0aa;text-align:center;padding:24px;font-
  </div>
 </section>
 
-<section id="about">
- <div class="wrap about">
-  <div>
-   <h2>About Me</h2>
-   <p class="sub" id="aboutSub" style="margin-bottom:14px"></p>
-   <div class="reveal" id="aboutText"></div>
-  </div>
-  <div class="edu" id="eduList"></div>
+<section id="education">
+ <div class="wrap">
+  <h2>Education</h2>
+  <p class="sub">Academic background supporting my analytical approach.</p>
+  <div class="edu reveal-stagger" id="eduList"></div>
  </div>
 </section>
 
