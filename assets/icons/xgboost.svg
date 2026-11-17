@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="XGBoost">
+  <rect width="64" height="64" rx="14" fill="#e4f1ec"/>
+  <path d="M17 16c8 2 14 8 15 17-5-1-11-4-15-9-3-4-3-7 0-8Z" fill="#1f7a5c"/>
+  <path d="M47 16c-8 2-14 8-15 17 5-1 11-4 15-9 3-4 3-7 0-8Z" fill="#2a9d76"/>
+  <path d="M32 29v20M22 39h20" fill="none" stroke="#145a43" stroke-width="4" stroke-linecap="round"/>
+  <text x="32" y="58" text-anchor="middle" fill="#145a43" font-family="Arial,sans-serif" font-size="9" font-weight="700">XG</text>
+</svg>
