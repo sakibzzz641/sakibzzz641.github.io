@@ -236,7 +236,7 @@ skills: [
       title: "Computer Basic and ICT Applications",
       issuer: "Dept. of Youth Development, Ministry of Youth and Sports, Govt. of Bangladesh",
       details: [["Period", "Jul\u2013Dec 2024"], ["Grade", "A+"], ["Certificate ID", "141231"], ["Covers", "MS Word, Excel, Access, PowerPoint"]],
-      link: "assets/pdf/computer_basic_and_ict_application.pdf"
+      link: "assets/pdf/computer_basic_and_ ict_application.pdf"
     },
     {
       title: "Business Case Solving",
