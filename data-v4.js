@@ -172,7 +172,7 @@ skills: [
       category: ["Data Science", "EDA"],
       repo: "https://github.com/sakibzzz641/superstore-sales-eda",
       repoSlug: "sakibzzz641/superstore-sales-eda",
-      image: "projects/project/superstore-sales-eda/cover.jpg",
+      image: "projects/project/superstore-sales-eda/00_cover.png",
       thumb: "dots"
    }
      // Notun project: ekta { ... } block copy kore comma diye boshao (SQL / Power BI o ekbhabe)
