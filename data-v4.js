@@ -162,8 +162,20 @@ skills: [
       liveApp: "",
       image: "projects/project/Supply-Chain-Logistics-Dashboard-Excel/cover.jpg",
       thumb: "mix"
-    }
-    // Notun project: ekta { ... } block copy kore comma diye boshao (SQL / Power BI o ekbhabe)
+    },
+    {
+      id: "superstore-sales-eda",
+      title: "Superstore Sales EDA",
+      color: "blue",
+      description: "Analyzed 9,993 Superstore retail orders (2015-2018) to find what drives profit, from category margins to discount impact and seasonality.",
+      tags: ["Python", "Pandas", "EDA"],
+      category: ["Data Science", "EDA"],
+      repo: "https://github.com/sakibzzz641/superstore-sales-eda",
+      repoSlug: "sakibzzz641/superstore-sales-eda",
+      image: "projects/project/superstore-sales-eda/cover.jpg",
+      thumb: "dots"
+   }
+     // Notun project: ekta { ... } block copy kore comma diye boshao (SQL / Power BI o ekbhabe)
   ],
 
   // ---------- Case Studies ----------
@@ -220,7 +232,17 @@ skills: [
       problem: "Seven separate tables made it hard to see late orders, freight cost, warehouse cost and which ports, plants or carriers the business depends on too much.",
       approach: "Cleaned 7 tables with Power Query, built PivotTables and PivotCharts with slicers across 7 pages, and added VBA buttons plus a Key Takeaways page.",
       result: "98% of orders ship from one port and one plant carries 95% of warehouse cost. The busiest carrier (68% of orders) is also the least reliable at 2.9% late."
-    }
+    },
+    {
+  title: "Superstore Retail Sales Analysis",
+  color: "blue",
+  tags: ["EDA", "Data Cleaning", "Visualization"],
+  category: ["Data Science", "EDA"],
+  repo: "https://github.com/sakibzzz641/superstore-sales-eda",
+  problem: "Find which categories, regions and discount levels drive or hurt profit in US Superstore retail orders, and how seasonal sales are.",
+  approach: "Cleaned the raw file (806 junk rows, 1 duplicate, 1 missing ZIP), built date and margin features, then analyzed categories, regions, segments, discount bands and monthly seasonality with Pandas, Matplotlib and Seaborn.",
+  result: "Furniture brings 32% of sales at only a 2.5% margin, and average profit turns negative above 20% discount (-$78.0 per line item at 21-40%). Recommendation: cap discounts at 20%."
+   }
   ],
 
   // ---------- Certifications ----------
