@@ -311,14 +311,16 @@ footer{background:var(--surface);border-top:1px solid var(--line);padding:44px 0
  .about-card{position:static}
  .case{grid-template-columns:1fr;gap:24px;padding:26px 22px}
 }
-@media(max-width:760px){
- .wrap{padding:0 20px}
+@media(max-width:1080px){
  nav{height:64px}
- nav ul{position:fixed;top:64px;left:12px;right:12px;flex-direction:column;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--card-shadow-lg);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-10px);transition:all .25s ease;font-size:.95rem}
+ nav ul{position:fixed;top:64px;left:12px;right:12px;flex-direction:column;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--card-shadow-lg);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-10px);transition:all .25s ease;font-size:.95rem;max-height:calc(100vh - 80px);overflow-y:auto}
  nav ul.open{opacity:1;visibility:visible;pointer-events:auto;transform:none}
  nav ul a{display:block;padding:11px 16px}
  #navCv{display:none}
  .menu{display:grid}
+}
+@media(max-width:760px){
+ .wrap{padding:0 20px}
  .hero{padding:128px 0 48px}
  .stats{grid-template-columns:repeat(2,1fr);gap:26px}
  .groups,.projects,.certs{grid-template-columns:1fr}
