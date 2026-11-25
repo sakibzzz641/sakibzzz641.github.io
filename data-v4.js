@@ -176,6 +176,7 @@ skills: [
       id: "superstore-sales-eda",
       title: "Superstore Sales EDA",
       color: "blue",
+      metric: "9,993 orders",
       description: "Analyzed 9,993 Superstore retail orders (2015-2018) to find what drives profit, from category margins to discount impact and seasonality.",
       tags: ["Python", "Pandas", "EDA"],
       category: ["Data Science", "EDA"],
